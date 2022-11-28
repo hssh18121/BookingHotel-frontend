@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Home from "./components/Home/Home";
 
 function App() {
+  const [backendData, setBackendData] = useState([{}]);
+  useEffect(() => {
+    fetch("/hotels")
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendData(data);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      {/* {" "}
+      {typeof backendData.data === "undefined" ? (
+        <p>Loading....</p>
+      ) : (
+        backendData.data.hotels.map((testData, i) => (
+          <p key={testData._id}>{testData.name}</p>
+        ))
+      )}{" "}
+      */}{" "}
+      {typeof backendData.data === "undefined" ? (
+        <p>Loading....</p>
+      ) : (
+        <Home hotelData={backendData.data.hotels} />
+      )}{" "}
+    </React.Fragment>
   );
 }
 
