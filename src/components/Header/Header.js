@@ -1,13 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
+const Header = (props) => {
+  // const openLoginFormHandler = () => {
+  //   props.openLoginFormHandler(true);
+  // };
 
-const Header = () => {
+  // const openTourHandler = () => {
+  //   props.openTourHandler(true);
+  // };
   return (
     <React.Fragment>
       <header className="header">
         <nav className="nav nav--tours">
-          <a href="google.come" className="nav__el">
+          <Link className="nav__el" to="/home">
             All tours
-          </a>
+          </Link>
           <form className="nav__search">
             <button className="nav__search-btn">
               <svg>
@@ -25,17 +32,17 @@ const Header = () => {
           <img src={require("../../img/logo-white.png")} alt="Natours logo" />
         </div>
         <nav className="nav nav--user">
-          <a href="google.com" className="nav__el">
-            My bookings
-          </a>
-          <a href="google.com" className="nav__el">
+          <Link className="nav__el" to="/login">
+            Login
+          </Link>
+          <Link to="/user-profile" className="nav__el">
             <img
               src={require("../../img/users/user-1.jpg")}
               alt="User "
               className="nav__user-img"
             />
             <span>Jonas</span>
-          </a>
+          </Link>
 
           {/* <!-- <button class="nav__el">Log in</button>
         <button class="nav__el nav__el--cta">Sign up</button> --> */}

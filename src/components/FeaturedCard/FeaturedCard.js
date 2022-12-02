@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FeaturedCard = (props) => {
   return (
@@ -57,9 +58,12 @@ const FeaturedCard = (props) => {
             <span className="card__footer-value">4.7</span>
             <span className="card__footer-text">rating (23)</span>
           </p>
-          <a href="google.com" className="btn btn--green btn--small">
+          <Link
+            to={`/hotels/details/${props.id}`}
+            className="btn btn--green btn--small"
+          >
             Details
-          </a>
+          </Link>
         </div>
       </div>
     </React.Fragment>

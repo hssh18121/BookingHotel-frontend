@@ -8,6 +8,7 @@ const Main = (props) => {
           {props.hotelData.map((element) => (
             <FeaturedCard
               name={element.name}
+              id={element._id}
               key={element._id}
               description={element.description}
             />

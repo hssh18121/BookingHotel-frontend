@@ -21,12 +21,12 @@ function App() {
           <p key={testData._id}>{testData.name}</p>
         ))
       )}{" "}
-      */}{" "}
+      */}
       {typeof backendData.data === "undefined" ? (
         <p>Loading....</p>
       ) : (
         <Home hotelData={backendData.data.hotels} />
-      )}{" "}
+      )}
     </React.Fragment>
   );
 }
