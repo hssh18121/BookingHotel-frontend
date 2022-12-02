@@ -348,6 +348,57 @@ const HotelDetails = (props) => {
           </div>
         </div>
       </section>
+
+      <section className="section-cta flex-justify-center">
+        <form>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Loại chỗ nghỉ</th>
+                <th>Mô tả</th>
+                <th>Phù hợp cho</th>
+                <th>Giá</th>
+                <th>Chọn</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th>
+                  <img
+                    src={require("../../img/double-room.jpg")}
+                    class="room-overview-image"
+                    alt="room preview"
+                  />
+                </th>
+                <th>Deluxe Twin Room</th>
+                <td class="description-table-data">
+                  This twin room has air conditioning, electric kettle and
+                  soundproofing. The indoor window has internal view.
+                </td>
+                <td>4 people</td>
+                <td>1000000</td>
+                <td>
+                  <input
+                    type="number"
+                    class="number-input-field"
+                    id="vehicle1"
+                    name="vehicle1"
+                    min="0"
+                    max="5"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <input
+            type="submit"
+            value="Order room now"
+            class="btn btn--green btn--small"
+          />
+        </form>
+      </section>
     </React.Fragment>
   );
 };

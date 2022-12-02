@@ -349,6 +349,13 @@ body {
     100% calc(100% - var(--section-rotate)),
     0 100%
   );
+  /* background-image: url(img/tours/tour-2-2.jpg); */
+  background-image: linear-gradient(
+      rgba(34, 34, 34, 0.6),
+      rgba(34, 34, 34, 0.6)
+    ),
+    url(img/tours/tour-2-3.jpg);
+  background-size: cover;
 }
 
 .header__hero {
@@ -540,7 +547,7 @@ body {
 
 .section-map {
   position: relative;
-  height: 65rem;
+  height: 35rem;
   margin-top: calc(0px - var(--section-rotate));
 }
 
@@ -678,7 +685,7 @@ body {
 .section-cta {
   margin-top: calc(0px - var(--section-rotate));
   padding: 3rem;
-  padding-bottom: 11rem;
+  padding-bottom: 5rem;
   padding-top: calc(15rem + var(--section-rotate));
   background-color: #f7f7f7;
 }
@@ -1322,4 +1329,71 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+}
+
+/* Room list css */
+table {
+  width: 1050px;
+
+  font-size: 18px;
+  /* border: 1px solid #343a40; */
+  border-collapse: collapse;
+  line-height: 1.25;
+  margin-bottom: 50px;
+}
+
+th,
+td {
+  /* border: 1px solid #343a40; */
+  padding: 16px 24px;
+  text-align: left;
+  /* border-bottom: 2px solid #087f5b;
+  border-right: 2px solid #087f5b; */
+}
+
+thead tr {
+  background-color: #55c57a;
+  color: #fff;
+}
+
+thead th {
+  width: 22%;
+}
+
+tbody tr {
+  font-size: 16px;
+}
+tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e9ecef;
+}
+
+tbody td:last-child {
+  border-right: none;
+}
+
+.number-input-field {
+  width: 70px;
+  padding: 6px 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.description-table-data {
+  width: 40%;
+  font-size: 16px;
+}
+
+.room-overview-image {
+  width: 150px;
+}
+
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
 }
