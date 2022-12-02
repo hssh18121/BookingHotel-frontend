@@ -37,18 +37,7 @@ const Home = (props) => {
           <LoginForm />
         </Route>
         <Route path="/hotels/details/:id">
-          {/* {props.hotelData.filter(function (element) {
-            if (element._id === props.match.params.id)
-              return (
-                <HotelDetails
-                  name={element.name}
-                  id={element._id}
-                  key={element._id}
-                  description={element.description}
-                />
-              );
-          })} */}
-          <HotelDetails />
+          <HotelDetails hotelData={props.hotelData} />
         </Route>
         <Route exact path="/user-profile">
           <UserProfile />

@@ -1,14 +1,17 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 // import { ScrollView } from "react";
-const HotelDetails = () => {
+const HotelDetails = (props) => {
+  const { id } = useParams();
+  const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
   return (
     <React.Fragment>
       <section className="section-header">
         <div className="heading-box">
           <h1 className="heading-primary">
             <span>
-              The Park <br />
-              Camper Tour
+              {hotelDetailData.name}
+              <br />
             </span>
           </h1>
           <div className="heading-box__group">
