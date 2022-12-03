@@ -13,7 +13,7 @@ const Header = (props) => {
       <header className="header">
 
         <nav className="nav nav--tours">
-          <Link className="nav__el" to="/home">
+          <Link className="nav__el" to="/hotels">
             All tours
           </Link>
           
