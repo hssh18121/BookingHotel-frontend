@@ -1,51 +1,31 @@
-import React, { useEffect, useState } from "react";
-import "../../App.css";
-import Header from "../Header/Header";
+import React from "react";
 import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
-import LoginForm from "../LoginForm/LoginForm";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import HotelDetails from "../HotelDetails/HotelDetails";
-import UserProfile from "../UserProfile/UserProfile";
-
 const Home = (props) => {
-  const [openLoginForm, setOpenLoginForm] = useState();
-
-  // const openTourHandler = (Boolean) => {
-  //   if (Boolean) {
-  //     setOpenLoginForm(false);
-  //   }
-  // };
-
-  // const openLoginFormHandler = (Boolean) => {
-  //   if (Boolean) {
-  //     setOpenLoginForm(true);
-  //   }
-  // };
-
   return (
-    <Router>
-      <Header
-      // openLoginFormHandler={openLoginFormHandler}
-      // openTourHandler={openTourHandler}
-      />
-      <Switch>
-        <Route exact path="/home">
-          <Main hotelData={props.hotelData} />
-        </Route>
-        <Route exact path="/login">
-          <LoginForm />
-        </Route>
-        <Route path="/hotels/details/:id">
-          <HotelDetails hotelData={props.hotelData} />
-        </Route>
-        <Route exact path="/user-profile">
-          <UserProfile />
-        </Route>
-      </Switch>
-      {/* {openLoginForm ? <LoginForm /> : <Main hotelData={props.hotelData} />} */}
-      <Footer />
-    </Router>
+    <React.Fragment>
+      <header id="header">
+        <div id="header__logo-box">
+          <img src="img/logo-white.png" alt="Logo" id="header__logo" />
+        </div>
+
+        <div id="header__text-box">
+          <h1 id="heading-primary">
+            <span id="heading-primary--main">Outdoors</span>
+            <span id="heading-primary--sub">is where life happens</span>
+          </h1>
+
+          <a
+            href="#section-tours"
+            className="btn  btn--animated"
+            id="btn--white"
+          >
+            Discover our tours
+          </a>
+        </div>
+      </header>
+      <Main hotelData={props.hotelData} />
+    </React.Fragment>
   );
 };
+
 export default Home;

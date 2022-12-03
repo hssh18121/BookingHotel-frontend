@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Home from "./components/Home/Home";
+import MainContent from "./components/MainContent/MainContent";
 
 function App() {
   const [backendData, setBackendData] = useState([{}]);
@@ -25,7 +25,7 @@ function App() {
       {typeof backendData.data === "undefined" ? (
         <p>Loading....</p>
       ) : (
-        <Home hotelData={backendData.data.hotels} />
+        <MainContent hotelData={backendData.data.hotels} />
       )}
     </React.Fragment>
   );

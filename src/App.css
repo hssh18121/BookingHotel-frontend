@@ -1340,6 +1340,7 @@ table {
   border-collapse: collapse;
   line-height: 1.25;
   margin-bottom: 50px;
+  box-shadow: 0 3rem 8rem 0.5rem rgb(0 0 0 / 15%);
 }
 
 th,
@@ -1396,4 +1397,82 @@ tbody td:last-child {
 .flex-justify-center {
   display: flex;
   justify-content: center;
+}
+
+/* Home Page */
+#header {
+  height: 85vh;
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      right bottom,
+      rgba(34, 34, 34, 0.6),
+      rgba(34, 34, 34, 0.6)
+    ),
+    url(img/tours/tour-1-1.jpg);
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(34, 34, 34, 0.6),
+      rgba(34, 34, 34, 0.6)
+    ),
+    url(img/tours/tour-1-1.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+}
+
+#header__logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+}
+#header__logo {
+  height: 3.5rem;
+}
+#header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+}
+
+#heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  -webkit-animation-name: moveInLeft;
+  animation-name: moveInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+
+#heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.75rem;
+  -webkit-animation: moveInRight 1s ease-out;
+  animation: moveInRight 1s ease-out;
+}
+
+#btn--white {
+  background-color: #fff;
+  color: #777;
+}
+
+#btn--white::after {
+  background-color: #fff;
 }
