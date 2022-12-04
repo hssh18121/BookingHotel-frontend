@@ -11,26 +11,29 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <header className="header">
+
         <nav className="nav nav--tours">
           <Link className="nav__el" to="/hotels">
             All tours
           </Link>
+          
           <form className="nav__search">
             <button className="nav__search-btn">
               <svg>
                 <use xlinkHref="../../img/icons.svg#icon-search"></use>
               </svg>
-            </button>
-            <input
-              type="text"
-              placeholder="Search tours"
-              className="nav__search-input"
-            />
+            </button>           
+            <input type="text" 
+                   placeholder="where are you going?" 
+                   className="nav__search-input"
+            />           
           </form>
         </nav>
+
         <div className="header__logo">
           <img src={require("../../img/logo-white.png")} alt="Natours logo" />
         </div>
+
         <nav className="nav nav--user">
           <Link className="nav__el" to="/login">
             Login
@@ -47,6 +50,7 @@ const Header = (props) => {
           {/* <!-- <button class="nav__el">Log in</button>
         <button class="nav__el nav__el--cta">Sign up</button> --> */}
         </nav>
+
       </header>
     </React.Fragment>
   );
