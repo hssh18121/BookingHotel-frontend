@@ -6,13 +6,9 @@ const FeaturedCard = (props) => {
     <React.Fragment>
       <div className="card">
         <div className="card__header">
-          <div className="card__picture">
-            <div className="">&nbsp;</div>
-            <img
-              src={require("../../img/tours/tour-1-cover.jpg")}
-              alt="Tour 1"
-              className="card__picture-img"
-            />
+          <div className="card__picture ">
+            <div className="card__picture-overlay">&nbsp;</div>
+            <img src={props.image} alt="Tour 1" className="card__picture-img" />
           </div>
 
           <h3 className="heading-tertirary">
@@ -22,7 +18,7 @@ const FeaturedCard = (props) => {
 
         <div className="card__details">
           <h4 className="card__sub-heading">Difficult 14-day tour</h4>
-          <p className="card__text">{props.description}</p>
+          <p className="card__text">Featured Hotel</p>
           <div className="card__data">
             <svg className="card__icon">
               {/* <use xlink:href="img/icons.svg#icon-map-pin"></use> */}

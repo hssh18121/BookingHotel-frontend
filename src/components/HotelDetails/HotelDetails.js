@@ -6,7 +6,12 @@ const HotelDetails = (props) => {
   const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
   return (
     <React.Fragment>
-      <section className="section-header">
+      <section
+        className="section-header"
+        style={{
+          backgroundImage: `linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)), url(${hotelDetailData.image}})`,
+        }}
+      >
         <div className="heading-box">
           <h1 className="heading-primary">
             <span>

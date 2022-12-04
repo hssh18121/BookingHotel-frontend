@@ -10,6 +10,7 @@ const Main = (props) => {
               name={element.name}
               id={element._id}
               key={element._id}
+              image={element.image}
               description={element.description}
             />
           ))}

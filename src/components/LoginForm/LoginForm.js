@@ -13,7 +13,7 @@ const LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, password);
-    fetch("http://localhost:5000/login-user", {
+    fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -29,7 +29,7 @@ const LoginForm = (props) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
-        if (data.status === "ok") {
+        if (data.status === "success") {
           alert("login successful");
           window.localStorage.setItem("token", data.data);
           window.location.href = "./hotels";

@@ -4,7 +4,7 @@ import MainContent from "./components/MainContent/MainContent";
 function App() {
   const [backendData, setBackendData] = useState([{}]);
   useEffect(() => {
-    fetch("/hotels")
+    fetch("api/hotel/all")
       .then((response) => response.json())
       .then((data) => {
         setBackendData(data);
@@ -22,10 +22,10 @@ function App() {
         ))
       )}{" "}
       */}
-      {typeof backendData.data === "undefined" ? (
+      {typeof backendData === "undefined" ? (
         <p>Loading....</p>
       ) : (
-        <MainContent hotelData={backendData.data.hotels} />
+        <MainContent hotelData={backendData} />
       )}
     </React.Fragment>
   );
