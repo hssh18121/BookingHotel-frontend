@@ -17,25 +17,25 @@ const FeaturedCard = (props) => {
         </div>
 
         <div className="card__details">
-          <h4 className="card__sub-heading">Difficult 14-day tour</h4>
+          <h4 className="card__sub-heading">Viet Nam</h4>
           <p className="card__text">Featured Hotel</p>
           <div className="card__data">
             <svg className="card__icon">
               {/* <use xlink:href="img/icons.svg#icon-map-pin"></use> */}
             </svg>
-            <span>California, USA</span>
+            <span>Ha Noi, Viet Nam</span>
           </div>
           <div className="card__data">
             <svg className="card__icon">
               {/* <use xlink:href="img/icons.svg#icon-calendar"></use> */}
             </svg>
-            <span>July 2021</span>
+            <span>Capacity</span>
           </div>
           <div className="card__data">
             <svg className="card__icon">
               {/* <use xlink:href="img/icons.svg#icon-flag"></use> */}
             </svg>
-            <span>5 stops</span>
+            <span>Room Available</span>
           </div>
           <div className="card__data">
             <svg className="card__icon">

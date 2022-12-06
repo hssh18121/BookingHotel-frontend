@@ -24,13 +24,13 @@ const HotelDetails = (props) => {
               <svg className="heading-box__icon">
                 {/* <use xlink:href="img/icons.svg#icon-clock"></use> */}
               </svg>
-              <span className="heading-box__text">10 days</span>
+              <span className="heading-box__text">Ha Noi</span>
             </div>
             <div className="heading-box__detail">
               <svg className="heading-box__icon">
                 {/* <use xlink:href="img/icons.svg#icon-map-pin"></use> */}
               </svg>
-              <span className="heading-box__text">Las Vegas, USA</span>
+              <span className="heading-box__text">Viet Nam</span>
             </div>
           </div>
         </div>
@@ -40,27 +40,21 @@ const HotelDetails = (props) => {
         <div className="overview-box">
           <div>
             <div className="overview-box__group">
-              <h2 className="heading-secondary ma-bt-lg">Quick facts</h2>
+              <h2 className="heading-secondary ma-bt-lg">Thông tin chung:</h2>
               <div className="overview-box__detail">
                 <svg className="overview-box__icon">
                   {/* <use xlink:href="img/icons.svg#icon-calendar"></use> */}
                 </svg>
-                <span className="overview-box__label">Next date</span>
-                <span className="overview-box__text">August 2021</span>
+                <span className="overview-box__label">Phòng trống:</span>
+                <span className="overview-box__text">Có phòng</span>
               </div>
-              <div className="overview-box__detail">
-                <svg className="overview-box__icon">
-                  {/* <use xlink:href="img/icons.svg#icon-trending-up"></use> */}
-                </svg>
-                <span className="overview-box__label">Difficulty</span>
-                <span className="overview-box__text">Medium</span>
-              </div>
+
               <div className="overview-box__detail">
                 <svg className="overview-box__icon">
                   {/* <use xlink:href="img/icons.svg#icon-user"></use> */}
                 </svg>
-                <span className="overview-box__label">Participants</span>
-                <span className="overview-box__text">10 people</span>
+                <span className="overview-box__label">Sức chứa:</span>
+                <span className="overview-box__text">160 người</span>
               </div>
               <div className="overview-box__detail">
                 <svg className="overview-box__icon">
@@ -72,7 +66,7 @@ const HotelDetails = (props) => {
             </div>
 
             <div className="overview-box__group">
-              <h2 className="heading-secondary ma-bt-lg">Your tour guides</h2>
+              <h2 className="heading-secondary ma-bt-lg">Liên hệ</h2>
 
               <div className="overview-box__detail">
                 <img
@@ -80,8 +74,8 @@ const HotelDetails = (props) => {
                   alt="Lead guide"
                   className="overview-box__img"
                 />
-                <span className="overview-box__label">Lead guide</span>
-                <span className="overview-box__text">Steven Miller</span>
+                <span className="overview-box__label">Quản trị viên</span>
+                <span className="overview-box__text">0969834945</span>
               </div>
               <div className="overview-box__detail">
                 <img
@@ -89,8 +83,8 @@ const HotelDetails = (props) => {
                   alt="Tour guide"
                   className="overview-box__img"
                 />
-                <span className="overview-box__label">Tour guide</span>
-                <span className="overview-box__text">Lisa Brown</span>
+                <span className="overview-box__label">Quản trị viên</span>
+                <span className="overview-box__text">0969834945</span>
               </div>
               <div className="overview-box__detail">
                 <img
@@ -98,25 +92,16 @@ const HotelDetails = (props) => {
                   alt="Intern"
                   className="overview-box__img"
                 />
-                <span className="overview-box__label">Intern</span>
-                <span className="overview-box__text">Max Smith</span>
+                <span className="overview-box__label">Quản trị viên</span>
+                <span className="overview-box__text">0969834945</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="description-box">
-          <h2 className="heading-secondary ma-bt-lg">
-            About the park camper tour
-          </h2>
-          <p className="description__text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
+          <h2 className="heading-secondary ma-bt-lg">Mô tả về khách sạn</h2>
+          <p className="description__text">{hotelDetailData.description}</p>
           <p className="description__text">
             Duis aute irure dolor in reprehenderit in voluptate velit esse
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
@@ -348,7 +333,7 @@ const HotelDetails = (props) => {
               10 days. 1 adventure. Infinite memories. Make it yours today!
             </p>
             <button className="btn btn--green span-all-rows">
-              Book tour now!
+              Book room now!
             </button>
           </div>
         </div>
@@ -382,7 +367,33 @@ const HotelDetails = (props) => {
                   This twin room has air conditioning, electric kettle and
                   soundproofing. The indoor window has internal view.
                 </td>
-                <td>4 people</td>
+                <td>4 người</td>
+                <td>1000000</td>
+                <td>
+                  <input
+                    type="number"
+                    class="number-input-field"
+                    id="vehicle1"
+                    name="vehicle1"
+                    min="0"
+                    max="5"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <img
+                    src={require("../../img/double-room.jpg")}
+                    class="room-overview-image"
+                    alt="room preview"
+                  />
+                </th>
+                <th>Deluxe Twin Room</th>
+                <td class="description-table-data">
+                  This twin room has air conditioning, electric kettle and
+                  soundproofing. The indoor window has internal view.
+                </td>
+                <td>4 người</td>
                 <td>1000000</td>
                 <td>
                   <input

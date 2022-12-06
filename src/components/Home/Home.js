@@ -10,16 +10,12 @@ const Home = (props) => {
 
         <div id="header__text-box">
           <h1 id="heading-primary">
-            <span id="heading-primary--main">Outdoors</span>
+            <span id="heading-primary--main">Travelling</span>
             <span id="heading-primary--sub">is where life happens</span>
           </h1>
 
-          <a
-            href="#section-tours"
-            className="btn  btn--animated"
-            id="btn--white"
-          >
-            Discover our tours
+          <a href="/hotels" className="btn  btn--animated" id="btn--white">
+            Discover our hotels
           </a>
         </div>
       </header>

@@ -1,12 +1,12 @@
 import React from "react";
-import "./footer.css";
+// import "./footer.css";
 const Footer = () => {
   return (
     <React.Fragment>
       <div class="footer">
         <div class="footer__logo">
           <img src="img/logo-green.png" alt="Natours logo" />
-      </div>
+        </div>
         <ul class="footer__nav">
           <li>
             <a href="google.com">About us</a>
@@ -22,11 +22,11 @@ const Footer = () => {
           </li>
           <li>
             <a href="google.com">Contact</a>
-          </li> 
-        </ul> 
+          </li>
+        </ul>
         <p class="footer__copyright">
           &copy; by Jonas Schmedtmann. All rights reserved.
-        </p>         
+        </p>
       </div>
     </React.Fragment>
   );
