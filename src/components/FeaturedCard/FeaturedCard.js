@@ -57,6 +57,7 @@ const FeaturedCard = (props) => {
           <Link
             to={`/hotels/details/${props.id}`}
             className="btn btn--green btn--small"
+            // onClick={(e) => e.preventDefault()}
           >
             Details
           </Link>

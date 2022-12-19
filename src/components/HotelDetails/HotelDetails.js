@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import { ScrollView } from "react";
 const HotelDetails = (props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams();
   const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
   return (

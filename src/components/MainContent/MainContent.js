@@ -9,25 +9,25 @@ import HotelDetails from "../HotelDetails/HotelDetails";
 import UserProfile from "../UserProfile/UserProfile";
 import Home from "../Home/Home";
 const MainContent = (props) => {
-  const [openLoginForm, setOpenLoginForm] = useState();
-
-  // const openTourHandler = (Boolean) => {
-  //   if (Boolean) {
-  //     setOpenLoginForm(false);
+  // const [filteredHotelData, setFilteredHotelData] = useState(props.hotelData);
+  // useEffect(() => {
+  //   setFilteredHotelData(props.hotelData);
+  // }, []);
+  // const getFilteredHotelData = (searchedText) => {
+  //   if (searchedText !== undefined) {
+  //     setFilteredHotelData((filteredHotelData) => {
+  //       const newFilteredHotelData = filteredHotelData.filter((hotel) =>
+  //         hotel.name.toLowerCase().includes(searchedText.toLowerCase())
+  //       );
+  //       return newFilteredHotelData;
+  //     });
   //   }
   // };
-
-  // const openLoginFormHandler = (Boolean) => {
-  //   if (Boolean) {
-  //     setOpenLoginForm(true);
-  //   }
-  // };
-
   return (
     <Router>
       <Header
-      // openLoginFormHandler={openLoginFormHandler}
-      // openTourHandler={openTourHandler}
+        hotelData={props.hotelData}
+        // getFilteredHotelData={getFilteredHotelData}
       />
 
       <Switch>

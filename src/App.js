@@ -22,10 +22,10 @@ function App() {
         ))
       )}{" "}
       */}
-      {typeof backendData === "undefined" ? (
+      {typeof backendData.data === "undefined" ? (
         <p>Loading....</p>
       ) : (
-        <MainContent hotelData={backendData} />
+        <MainContent hotelData={backendData.data.hotels} />
       )}
     </React.Fragment>
   );
