@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import FeaturedCard from "../FeaturedCard/FeaturedCard";
 import "./Main.css";
 const Main = (props) => {
+  const [filteredData, setFilteredData] = useState(props.hotelData);
+  const [searchedTerm, setSearchedTerm] = useState("");
+  const searchHandler = (event) => {
+    event.preventDefault();
+
+    const updatedData = props.hotelData.filter((element) => {
+      if (
+        element.name.toLowerCase().includes(searchedTerm.toLowerCase().trim())
+      ) {
+        return element;
+      }
+    });
+    setFilteredData(updatedData);
+  };
+
+  const inputHandler = (event) => {
+    setSearchedTerm(event.target.value);
+    console.log(searchedTerm);
+  };
+
   return (
     <React.Fragment>
       <main class="main">
-        <div class="search-container">
+        <form class="search-container" onSubmit={searchHandler}>
           <div class="tool-bar">
             <button class="categories-selector">
               <div class="flex-categories">
-                Calendar
+                Thanh Pho
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6 arrow-down"
@@ -29,8 +49,14 @@ const Main = (props) => {
             <input
               class="search-bar"
               placeholder="Click here to search"
+              onChange={(e) => inputHandler(e)}
+              value={searchedTerm}
             ></input>
-            <button class="search-button-container">
+            <button
+              class="search-button-container"
+              type="submit"
+              onClick={searchHandler}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 features-icon features-icon"
@@ -48,18 +74,22 @@ const Main = (props) => {
               </svg>
             </button>
           </div>
-        </div>
+        </form>
 
         <div class="card-container">
-          {props.hotelData.map((element) => (
-            <FeaturedCard
-              name={element.name}
-              id={element._id}
-              key={element._id}
-              image={element.image}
-              description={element.description}
-            />
-          ))}
+          {filteredData.length !== 0 ? (
+            filteredData.map((element) => (
+              <FeaturedCard
+                name={element.name}
+                id={element._id}
+                key={element._id}
+                image={element.image}
+                description={element.description}
+              />
+            ))
+          ) : (
+            <h1>No Data Available</h1>
+          )}
         </div>
       </main>
     </React.Fragment>

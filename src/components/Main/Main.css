@@ -72,12 +72,12 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   margin-bottom: 8rem;
 }
 
 .tool-bar {
-  width: 1200px;
+  width: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +85,7 @@
 
 .categories-selector {
   border: 0.1px solid #ddd;
-
+  width: 25%;
   background-color: #fff;
   color: rgb(85, 85, 85);
   font-weight: 600;
