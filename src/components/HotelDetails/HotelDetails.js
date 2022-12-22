@@ -1,12 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 // import { ScrollView } from "react";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const { id } = useParams();
-  const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
+
+  // const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
+  // const hotelRoomData = props.roomData.filter(
+  //   (Element) => Element.hotel === hotelDetailData._id
+  // );
+  const [hotelDetailData, setHotelDetailedData] = useState(
+    props.hotelData.find((Element) => Element._id === id)
+  );
+  const [hotelRoomData, setHotelRoomData] = useState(
+    props.roomData.filter((Element) => Element.hotel === hotelDetailData._id)
+  );
+  // useEffect(() => {
+  //   setHotelDetailedData(props.hotelData.find((Element) => Element._id === id));
+  // }, [props.hotelData, id]);
+  // useEffect(() => {
+  //   setHotelRoomData(
+  //     props.roomData.filter((Element) => Element.hotel === hotelDetailData._id)
+  //   );
+  // }, [props.roomData, hotelDetailData._id]);
+  console.log(hotelRoomData);
+  console.log(hotelDetailData);
   return (
     <React.Fragment>
       <section
@@ -357,58 +378,34 @@ const HotelDetails = (props) => {
             </thead>
 
             <tbody>
-              <tr>
-                <th>
-                  <img
-                    src={require("../../img/double-room.jpg")}
-                    class="room-overview-image"
-                    alt="room preview"
-                  />
-                </th>
-                <th>Deluxe Twin Room</th>
-                <td class="description-table-data">
-                  This twin room has air conditioning, electric kettle and
-                  soundproofing. The indoor window has internal view.
-                </td>
-                <td>4 người</td>
-                <td>1000000</td>
-                <td>
-                  <input
-                    type="number"
-                    class="number-input-field"
-                    id="vehicle1"
-                    name="vehicle1"
-                    min="0"
-                    max="5"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  <img
-                    src={require("../../img/double-room.jpg")}
-                    class="room-overview-image"
-                    alt="room preview"
-                  />
-                </th>
-                <th>Deluxe Twin Room</th>
-                <td class="description-table-data">
-                  This twin room has air conditioning, electric kettle and
-                  soundproofing. The indoor window has internal view.
-                </td>
-                <td>4 người</td>
-                <td>1000000</td>
-                <td>
-                  <input
-                    type="number"
-                    class="number-input-field"
-                    id="vehicle1"
-                    name="vehicle1"
-                    min="0"
-                    max="5"
-                  />
-                </td>
-              </tr>
+              {hotelRoomData.map((element) => (
+                <tr>
+                  <th>
+                    <img
+                      src={require("../../img/double-room.jpg")}
+                      class="room-overview-image"
+                      alt="room preview"
+                    />
+                  </th>
+                  <th>{element.name}</th>
+                  <td class="description-table-data">
+                    This twin room has air conditioning, electric kettle and
+                    soundproofing. The indoor window has internal view.
+                  </td>
+                  <td>4 người</td>
+                  <td>1000000</td>
+                  <td>
+                    <input
+                      type="number"
+                      class="number-input-field"
+                      id="vehicle1"
+                      name="vehicle1"
+                      min="0"
+                      max="5"
+                    />
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <input

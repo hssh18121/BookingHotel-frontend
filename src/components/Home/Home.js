@@ -1,5 +1,6 @@
 import React from "react";
 import Main from "../Main/Main";
+import { Link } from "react-router-dom";
 const Home = (props) => {
   return (
     <React.Fragment>
@@ -14,9 +15,9 @@ const Home = (props) => {
             <span id="heading-primary--sub">is where life happens</span>
           </h1>
 
-          <a href="/hotels" className="btn  btn--animated" id="btn--white">
+          <Link to="/hotels" className="btn  btn--animated" id="btn--white">
             Discover our hotels
-          </a>
+          </Link>
         </div>
       </header>
       <Main hotelData={props.hotelData} />

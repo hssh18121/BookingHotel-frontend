@@ -4,7 +4,12 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import LoginForm from "../LoginForm/LoginForm";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  HashRouter,
+} from "react-router-dom";
 import HotelDetails from "../HotelDetails/HotelDetails";
 import UserProfile from "../UserProfile/UserProfile";
 import Home from "../Home/Home";
@@ -24,7 +29,7 @@ const MainContent = (props) => {
   //   }
   // };
   return (
-    <Router>
+    <HashRouter>
       <Header
         hotelData={props.hotelData}
         // getFilteredHotelData={getFilteredHotelData}
@@ -41,7 +46,7 @@ const MainContent = (props) => {
           <LoginForm />
         </Route>
         <Route path="/hotels/details/:id">
-          <HotelDetails hotelData={props.hotelData} />
+          <HotelDetails hotelData={props.hotelData} roomData={props.roomData} />
         </Route>
         <Route exact path="/user-profile">
           <UserProfile />
@@ -49,7 +54,7 @@ const MainContent = (props) => {
       </Switch>
       {/* {openLoginForm ? <LoginForm /> : <Main hotelData={props.hotelData} />} */}
       <Footer />
-    </Router>
+    </HashRouter>
   );
 };
 export default MainContent;
