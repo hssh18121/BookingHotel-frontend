@@ -19,17 +19,9 @@ function App() {
         setBackendRoomData(data);
       });
   }, []);
+
   return (
     <React.Fragment>
-      {/* {" "}
-      {typeof backendData.data === "undefined" ? (
-        <p>Loading....</p>
-      ) : (
-        backendData.data.hotels.map((testData, i) => (
-          <p key={testData._id}>{testData.name}</p>
-        ))
-      )}{" "}
-      */}
       {typeof backendData.data?.hotels === "undefined" ||
       typeof backendRoomData.data?.rooms === "undefined" ? (
         <p>Loading....</p>

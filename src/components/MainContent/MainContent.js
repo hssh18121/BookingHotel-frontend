@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import LoginForm from "../LoginForm/LoginForm";
+import RegisterForm from "../RegisterForm/RegisterForm";
 import {
   BrowserRouter as Router,
   Route,
@@ -44,6 +45,9 @@ const MainContent = (props) => {
         </Route>
         <Route exact path="/login">
           <LoginForm />
+        </Route>
+        <Route exact path="/register">
+          <RegisterForm />
         </Route>
         <Route path="/hotels/details/:id">
           <HotelDetails hotelData={props.hotelData} roomData={props.roomData} />

@@ -1,0 +1,14 @@
+.display-flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+#register-form {
+  max-width: 70rem;
+}
+
+#form__group {
+  width: 100%;
+  margin-bottom: 2rem;
+}

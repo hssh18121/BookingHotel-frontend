@@ -28,10 +28,9 @@ const LoginForm = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "userRegister");
         if (data.status === "success") {
           alert("login successful");
-          window.localStorage.setItem("token", data.data);
+          localStorage.setItem("token", data.data.token);
           window.location.href = "./hotels";
         }
       });
