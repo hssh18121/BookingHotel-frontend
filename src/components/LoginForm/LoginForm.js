@@ -31,6 +31,7 @@ const LoginForm = (props) => {
         if (data.status === "success") {
           alert("login successful");
           localStorage.setItem("token", data.data.token);
+          localStorage.setItem("username", data.data.username);
           window.location.href = "./hotels";
         }
       });

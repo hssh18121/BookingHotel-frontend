@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 const Header = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem("token");
+
     if (storedUserLoggedInInformation) {
       setIsLoggedIn(true);
     }
@@ -12,6 +14,7 @@ const Header = (props) => {
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     setIsLoggedIn(false);
   };
   return (
@@ -19,8 +22,9 @@ const Header = (props) => {
       <header className="header">
         <nav className="nav nav--tours">
           <Link className="nav__el" to="/">
-            Home
+            <FaHome />
           </Link>
+
           <Link className="nav__el" to="/hotels">
             All hotels
           </Link>
@@ -41,7 +45,7 @@ const Header = (props) => {
                 alt="User "
                 className="nav__user-img"
               />
-              <span>Jonas</span>
+              <span>{localStorage.getItem("username")}</span>
             </Link>
 
             {/* <!-- <button class="nav__el">Log in</button>
