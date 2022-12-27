@@ -1,6 +1,73 @@
 import React from "react";
-
+import { useEffect, useState } from "react";
 const UserProfile = () => {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [phone, setPhone] = useState("");
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/me/${localStorage.getItem("userID")}`, {
+      method: "GET",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          setEmail(data.data.user.email);
+          setFullname(data.data.user.fullname);
+          setPhone(data.data.user.phone);
+          setUsername(data.data.user.username);
+        }
+      });
+  }, []);
+
+  const fullnameHandler = (e) => {
+    setFullname(e.target.value);
+  };
+
+  const usernameHandler = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const phoneHandler = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const updateHandler = (e) => {
+    e.preventDefault();
+    console.log(email, username, phone);
+    fetch(
+      `http://localhost:5000/api/me/profile/${localStorage.getItem("userID")}`,
+      {
+        method: "PUT",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          username,
+          fullname,
+          phone,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("update successful");
+        }
+      });
+  };
   return (
     <React.Fragment>
       <main class="main">
@@ -48,28 +115,45 @@ const UserProfile = () => {
               <form class="form form-user-data">
                 <div class="form__group">
                   <label class="form__label" for="name">
-                    Name
+                    Fullname
                   </label>
+
                   <input
                     class="form__input"
                     id="name"
                     type="text"
-                    value="Laura Sarah Wilson"
+                    value={fullname}
                     required=""
                     name="name"
+                    onChange={fullnameHandler}
+                  />
+                </div>
+                <div class="form__group ma-bt-md">
+                  <label class="form__label" for="username">
+                    Username
+                  </label>
+                  <input
+                    class="form__input"
+                    id="username"
+                    type="text"
+                    value={username}
+                    required=""
+                    name="email"
+                    onChange={usernameHandler}
                   />
                 </div>
                 <div class="form__group ma-bt-md">
                   <label class="form__label" for="email">
-                    Email address
+                    Phone
                   </label>
                   <input
                     class="form__input"
-                    id="email"
-                    type="email"
-                    value="laura@example.com"
+                    id="phone"
+                    type="text"
+                    value={phone}
                     required=""
-                    name="email"
+                    name="phone"
+                    onChange={phoneHandler}
                   />
                 </div>
                 <div class="form__group form__photo-upload">
@@ -88,7 +172,11 @@ const UserProfile = () => {
                   <label for="photo">Choose new photo</label>
                 </div>
                 <div class="form__group right">
-                  <button class="btn btn--small btn--green">
+                  <button
+                    className="btn btn--small btn--green"
+                    type="submit"
+                    onClick={updateHandler}
+                  >
                     Save settings
                   </button>
                 </div>
