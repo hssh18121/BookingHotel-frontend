@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import { ScrollView } from "react";
+import Room from "./Room/Room";
+
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -8,26 +9,34 @@ const HotelDetails = (props) => {
 
   const { id } = useParams();
 
-  // const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
-  // const hotelRoomData = props.roomData.filter(
-  //   (Element) => Element.hotel === hotelDetailData._id
-  // );
   const [hotelDetailData, setHotelDetailedData] = useState(
     props.hotelData.find((Element) => Element._id === id)
   );
   const [hotelRoomData, setHotelRoomData] = useState(
     props.roomData.filter((Element) => Element.hotel === hotelDetailData._id)
   );
-  // useEffect(() => {
-  //   setHotelDetailedData(props.hotelData.find((Element) => Element._id === id));
-  // }, [props.hotelData, id]);
-  // useEffect(() => {
-  //   setHotelRoomData(
-  //     props.roomData.filter((Element) => Element.hotel === hotelDetailData._id)
-  //   );
-  // }, [props.roomData, hotelDetailData._id]);
-  console.log(hotelRoomData);
-  console.log(hotelDetailData);
+
+  const testOrderedRoom = [];
+
+  hotelRoomData.forEach((element) => {
+    element.quantity = 0;
+    testOrderedRoom.push(element);
+  });
+  const [orderedRoom, setOrderedRoom] = useState(testOrderedRoom);
+
+  const getOrderedRoomQuantity = (quantity, id) => {
+    setOrderedRoom((items) => {
+      const objIndex = items.findIndex((obj) => obj._id === id);
+      items[objIndex].quantity = quantity;
+      return items;
+    });
+  };
+
+  const orderSubmitHandler = (e) => {
+    e.preventDefault();
+    const sendOrder = orderedRoom.filter((room) => room.quantity !== 0);
+    console.log(sendOrder);
+  };
   return (
     <React.Fragment>
       <section
@@ -369,42 +378,22 @@ const HotelDetails = (props) => {
             <thead>
               <tr>
                 <th></th>
-                <th>Loại chỗ nghỉ</th>
-                <th>Mô tả</th>
-                <th>Phù hợp cho</th>
-                <th>Giá</th>
-                <th>Chọn</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Suitable for</th>
+                <th>Price</th>
+                <th>Order</th>
               </tr>
             </thead>
 
             <tbody>
               {hotelRoomData.map((element) => (
-                <tr>
-                  <th>
-                    <img
-                      src={require("../../img/double-room.jpg")}
-                      class="room-overview-image"
-                      alt="room preview"
-                    />
-                  </th>
-                  <th>{element.name}</th>
-                  <td class="description-table-data">
-                    This twin room has air conditioning, electric kettle and
-                    soundproofing. The indoor window has internal view.
-                  </td>
-                  <td>4 người</td>
-                  <td>1000000</td>
-                  <td>
-                    <input
-                      type="number"
-                      class="number-input-field"
-                      id="vehicle1"
-                      name="vehicle1"
-                      min="0"
-                      max="5"
-                    />
-                  </td>
-                </tr>
+                <Room
+                  name={element.name}
+                  description={element.description}
+                  id={element._id}
+                  onGetOrderedRoomQuantity={getOrderedRoomQuantity}
+                />
               ))}
             </tbody>
           </table>
@@ -412,6 +401,7 @@ const HotelDetails = (props) => {
             type="submit"
             value="Order room now"
             class="btn btn--green btn--small"
+            onClick={orderSubmitHandler}
           />
         </form>
       </section>

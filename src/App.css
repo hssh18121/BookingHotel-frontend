@@ -1383,12 +1383,13 @@ tbody td:last-child {
 }
 
 .number-input-field {
-  width: 70px;
+  width: 50px;
   padding: 6px 8px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
+  text-align: center;
 }
 
 .description-table-data {

@@ -6,6 +6,8 @@ const UserProfile = () => {
   // const [password, setPassword] = useState("");
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
+  const [oldPassword, setOldPassWord] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   useEffect(() => {
     fetch(`http://localhost:5000/api/me/${localStorage.getItem("userID")}`, {
       method: "GET",
@@ -40,6 +42,14 @@ const UserProfile = () => {
     setPhone(e.target.value);
   };
 
+  const oldPasswordHandler = (e) => {
+    setOldPassWord(e.target.value);
+  };
+
+  const newPasswordHandler = (e) => {
+    setNewPassword(e.target.value);
+  };
+
   const updateHandler = (e) => {
     e.preventDefault();
     console.log(email, username, phone);
@@ -68,6 +78,30 @@ const UserProfile = () => {
         }
       });
   };
+
+  const savePasswordHandler = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:5000/api/me/password`, {
+      method: "PUT",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        oldPassword,
+        newPassword,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("update password successful");
+        }
+      });
+  };
   return (
     <React.Fragment>
       <main class="main">
@@ -75,7 +109,7 @@ const UserProfile = () => {
           <nav class="user-view__menu">
             <ul class="side-nav">
               <li class="side-nav--active">
-                <a href="#">
+                <a href="google.com">
                   <svg>
                     {/* <use xlink:href="img/icons.svg#icon-settings"></use> */}
                   </svg>
@@ -91,7 +125,7 @@ const UserProfile = () => {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="abc.com">
                   <svg>
                     {/* <use xlink:href="img/icons.svg#icon-star"></use> */}
                   </svg>
@@ -99,7 +133,7 @@ const UserProfile = () => {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="abc.com">
                   <svg>
                     {/* <use xlink:href="img/icons.svg#icon-credit-card"></use> */}
                   </svg>
@@ -197,6 +231,8 @@ const UserProfile = () => {
                     placeholder="••••••••"
                     required=""
                     minlength="8"
+                    value={oldPassword}
+                    onChange={oldPasswordHandler}
                   />
                 </div>
                 <div class="form__group">
@@ -210,6 +246,8 @@ const UserProfile = () => {
                     placeholder="••••••••"
                     required=""
                     minlength="8"
+                    value={newPassword}
+                    onChange={newPasswordHandler}
                   />
                 </div>
                 <div class="form__group ma-bt-lg">
@@ -226,7 +264,10 @@ const UserProfile = () => {
                   />
                 </div>
                 <div class="form__group right">
-                  <button class="btn btn--small btn--green btn--save-password">
+                  <button
+                    class="btn btn--small btn--green btn--save-password"
+                    onClick={savePasswordHandler}
+                  >
                     Save password
                   </button>
                 </div>
