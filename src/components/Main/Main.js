@@ -24,15 +24,15 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-      <main class="main">
-        <form class="search-container" onSubmit={searchHandler}>
-          <div class="tool-bar">
-            <button class="categories-selector">
-              <div class="flex-categories">
+      <main className="main">
+        <form className="search-container" onSubmit={searchHandler}>
+          <div className="tool-bar">
+            <button className="categories-selector">
+              <div className="flex-categories">
                 Thanh Pho
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 arrow-down"
+                  className="h-6 w-6 arrow-down"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -47,13 +47,13 @@ const Main = (props) => {
               </div>
             </button>
             <input
-              class="search-bar"
+              className="search-bar"
               placeholder="Click here to search"
               onChange={(e) => inputHandler(e)}
               value={searchedTerm}
             ></input>
             <button
-              class="search-button-container"
+              className="search-button-container"
               type="submit"
               onClick={searchHandler}
             >
@@ -76,7 +76,7 @@ const Main = (props) => {
           </div>
         </form>
 
-        <div class="card-container">
+        <div className="card-container">
           {filteredData.length !== 0 ? (
             filteredData.map((element) => (
               <FeaturedCard

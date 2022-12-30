@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const UserProfile = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -9,7 +10,7 @@ const UserProfile = () => {
   const [oldPassword, setOldPassWord] = useState("");
   const [newPassword, setNewPassword] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/api/me/${localStorage.getItem("userID")}`, {
+    fetch(`http://localhost:5000/api/me`, {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -53,24 +54,21 @@ const UserProfile = () => {
   const updateHandler = (e) => {
     e.preventDefault();
     console.log(email, username, phone);
-    fetch(
-      `http://localhost:5000/api/me/profile/${localStorage.getItem("userID")}`,
-      {
-        method: "PUT",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          username,
-          fullname,
-          phone,
-        }),
-      }
-    )
+    fetch(`http://localhost:5000/api/me/profile`, {
+      method: "PUT",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        username,
+        fullname,
+        phone,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
@@ -104,56 +102,58 @@ const UserProfile = () => {
   };
   return (
     <React.Fragment>
-      <main class="main">
-        <div class="user-view">
-          <nav class="user-view__menu">
-            <ul class="side-nav">
-              <li class="side-nav--active">
-                <a href="google.com">
+      <main className="main">
+        <div className="user-view">
+          <nav className="user-view__menu">
+            <ul className="side-nav">
+              <li className="side-nav--active">
+                <Link to="/user-profile">
                   <svg>
                     {/* <use xlink:href="img/icons.svg#icon-settings"></use> */}
                   </svg>
                   Settings
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/my-tours">
+                <Link to="/order-history">
                   <svg>
                     {/* <use xlink:href="img/icons.svg#icon-briefcase"></use> */}
                   </svg>
                   My bookings
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="abc.com">
+                <Link to="/my-reviews-history">
                   <svg>
                     {/* <use xlink:href="img/icons.svg#icon-star"></use> */}
                   </svg>
                   My reviews
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="abc.com">
+                <Link to="/my-rating-history">
                   <svg>
                     {/* <use xlink:href="img/icons.svg#icon-credit-card"></use> */}
                   </svg>
-                  Billing
-                </a>
+                  Rating
+                </Link>
               </li>
             </ul>
           </nav>
 
-          <div class="user-view__content">
-            <div class="user-view__form-container">
-              <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
-              <form class="form form-user-data">
-                <div class="form__group">
-                  <label class="form__label" for="name">
+          <div className="user-view__content">
+            <div className="user-view__form-container">
+              <h2 className="heading-secondary ma-bt-md">
+                Your account settings
+              </h2>
+              <form className="form form-user-data">
+                <div className="form__group">
+                  <label className="form__label" for="name">
                     Fullname
                   </label>
 
                   <input
-                    class="form__input"
+                    className="form__input"
                     id="name"
                     type="text"
                     value={fullname}
@@ -162,12 +162,12 @@ const UserProfile = () => {
                     onChange={fullnameHandler}
                   />
                 </div>
-                <div class="form__group ma-bt-md">
-                  <label class="form__label" for="username">
+                <div className="form__group ma-bt-md">
+                  <label className="form__label" for="username">
                     Username
                   </label>
                   <input
-                    class="form__input"
+                    className="form__input"
                     id="username"
                     type="text"
                     value={username}
@@ -176,12 +176,12 @@ const UserProfile = () => {
                     onChange={usernameHandler}
                   />
                 </div>
-                <div class="form__group ma-bt-md">
-                  <label class="form__label" for="email">
+                <div className="form__group ma-bt-md">
+                  <label className="form__label" for="email">
                     Phone
                   </label>
                   <input
-                    class="form__input"
+                    className="form__input"
                     id="phone"
                     type="text"
                     value={phone}
@@ -190,14 +190,14 @@ const UserProfile = () => {
                     onChange={phoneHandler}
                   />
                 </div>
-                <div class="form__group form__photo-upload">
+                <div className="form__group form__photo-upload">
                   <img
-                    class="form__user-photo"
+                    className="form__user-photo"
                     src="/img/users/user-14.jpg"
                     alt="User"
                   />
                   <input
-                    class="form__upload"
+                    className="form__upload"
                     type="file"
                     accept="image/*"
                     id="photo"
@@ -205,7 +205,7 @@ const UserProfile = () => {
                   />
                   <label for="photo">Choose new photo</label>
                 </div>
-                <div class="form__group right">
+                <div className="form__group right">
                   <button
                     className="btn btn--small btn--green"
                     type="submit"
@@ -216,16 +216,16 @@ const UserProfile = () => {
                 </div>
               </form>
             </div>
-            <div class="line">&nbsp;</div>
-            <div class="user-view__form-container">
-              <h2 class="heading-secondary ma-bt-md">Password change</h2>
-              <form class="form form-user-password">
-                <div class="form__group">
-                  <label class="form__label" for="password-current">
+            <div className="line">&nbsp;</div>
+            <div className="user-view__form-container">
+              <h2 className="heading-secondary ma-bt-md">Password change</h2>
+              <form className="form form-user-password">
+                <div className="form__group">
+                  <label className="form__label" for="password-current">
                     Current password
                   </label>
                   <input
-                    class="form__input"
+                    className="form__input"
                     id="password-current"
                     type="password"
                     placeholder="••••••••"
@@ -235,12 +235,12 @@ const UserProfile = () => {
                     onChange={oldPasswordHandler}
                   />
                 </div>
-                <div class="form__group">
-                  <label class="form__label" for="password">
+                <div className="form__group">
+                  <label className="form__label" for="password">
                     New password
                   </label>
                   <input
-                    class="form__input"
+                    className="form__input"
                     id="password"
                     type="password"
                     placeholder="••••••••"
@@ -250,12 +250,12 @@ const UserProfile = () => {
                     onChange={newPasswordHandler}
                   />
                 </div>
-                <div class="form__group ma-bt-lg">
-                  <label class="form__label" for="password-confirm">
+                <div className="form__group ma-bt-lg">
+                  <label className="form__label" for="password-confirm">
                     Confirm password
                   </label>
                   <input
-                    class="form__input"
+                    className="form__input"
                     id="password-confirm"
                     type="password"
                     placeholder="••••••••"
@@ -263,9 +263,9 @@ const UserProfile = () => {
                     minlength="8"
                   />
                 </div>
-                <div class="form__group right">
+                <div className="form__group right">
                   <button
-                    class="btn btn--small btn--green btn--save-password"
+                    className="btn btn--small btn--green btn--save-password"
                     onClick={savePasswordHandler}
                   >
                     Save password

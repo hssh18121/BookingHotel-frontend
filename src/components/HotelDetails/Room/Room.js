@@ -7,12 +7,14 @@ const Room = (props) => {
     props.onGetOrderedRoomQuantity(Number(e.target.value), props.id);
   };
 
-  const addQuantityHandler = () => {
+  const addQuantityHandler = (e) => {
+    e.preventDefault();
     setRoomOrderQuantity(Number(roomOrderQuantity) + 1);
     props.onGetOrderedRoomQuantity(roomOrderQuantity + 1, props.id);
   };
 
-  const subtractQuantityHandler = () => {
+  const subtractQuantityHandler = (e) => {
+    e.preventDefault();
     if (Number(roomOrderQuantity) > 0) {
       setRoomOrderQuantity(Number(roomOrderQuantity) - 1);
       props.onGetOrderedRoomQuantity(roomOrderQuantity - 1, props.id);
@@ -24,12 +26,12 @@ const Room = (props) => {
         <th>
           <img
             src={require("../../../img/double-room.jpg")}
-            class="room-overview-image"
+            className="room-overview-image"
             alt="room preview"
           />
         </th>
         <th>{props.name}</th>
-        <td class="description-table-data">
+        <td className="description-table-data">
           {`${props.description.substring(0, 100)}...`}
         </td>
         <td>4 người</td>
@@ -44,7 +46,7 @@ const Room = (props) => {
             </button>
             <input
               type="number"
-              class="number-input-field"
+              className="number-input-field"
               value={roomOrderQuantity}
               onChange={roomOrderQuantityHandler}
               min="0"

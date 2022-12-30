@@ -95,7 +95,7 @@ const RegisterForm = () => {
                   Password
                 </label>
                 <input
-                  class="form__input"
+                  className="form__input"
                   id="password"
                   type="password"
                   placeholder="••••••••"
@@ -107,7 +107,7 @@ const RegisterForm = () => {
               <div className="form__group " id="form__group">
                 <label className="form__label">Full name</label>
                 <input
-                  class="form__input"
+                  className="form__input"
                   type="text"
                   id="fullname"
                   placeholder="Nguyen Van A"
@@ -130,8 +130,8 @@ const RegisterForm = () => {
               />
             </div>
 
-            <div class="form__group">
-              <button class="btn btn--green">Register</button>
+            <div className="form__group">
+              <button className="btn btn--green">Register</button>
             </div>
           </form>
         </div>

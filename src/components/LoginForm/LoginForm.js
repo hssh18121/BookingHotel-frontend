@@ -61,7 +61,7 @@ const LoginForm = (props) => {
                 Password
               </label>
               <input
-                class="form__input"
+                className="form__input"
                 id="password"
                 type="password"
                 placeholder="••••••••"
@@ -70,8 +70,8 @@ const LoginForm = (props) => {
                 onChange={setEnteredPassword}
               />
             </div>
-            <div class="form__group">
-              <button class="btn btn--green">Login</button>
+            <div className="form__group">
+              <button className="btn btn--green">Login</button>
             </div>
           </form>
         </div>
