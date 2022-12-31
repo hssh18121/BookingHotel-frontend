@@ -1,0 +1,15 @@
+#booking-history-view__form-container {
+  padding: 0;
+}
+
+#booking-history-table-row {
+  width: 20%;
+}
+
+#booking-history-table {
+  width: 700px;
+}
+
+#booking-history-table thead th {
+  padding: 12px 24px;
+}

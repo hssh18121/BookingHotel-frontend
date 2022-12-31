@@ -9,6 +9,7 @@ const UserProfile = () => {
   const [phone, setPhone] = useState("");
   const [oldPassword, setOldPassWord] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [avatar, setAvatar] = useState("");
   useEffect(() => {
     fetch(`http://localhost:5000/api/me`, {
       method: "GET",
@@ -27,6 +28,7 @@ const UserProfile = () => {
           setFullname(data.data.user.fullname);
           setPhone(data.data.user.phone);
           setUsername(data.data.user.username);
+          setAvatar(data.data.user.avatar);
         }
       });
   }, []);
@@ -51,6 +53,10 @@ const UserProfile = () => {
     setNewPassword(e.target.value);
   };
 
+  const avatarHandler = (e) => {
+    setAvatar(e.target.files[0]);
+  };
+
   const updateHandler = (e) => {
     e.preventDefault();
     console.log(email, username, phone);
@@ -73,6 +79,34 @@ const UserProfile = () => {
       .then((data) => {
         if (data.status === "success") {
           alert("update successful");
+          window.location.reload();
+        }
+      });
+  };
+
+  const updateProfileHandler = (e) => {
+    e.preventDefault();
+    console.log(avatar);
+    const formData = new FormData();
+
+    formData.append("avatar", avatar, avatar.name);
+    console.log(formData);
+    fetch(`http://localhost:5000/api/me/avatar`, {
+      method: "PUT",
+      crossDomain: true,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("update profile successful");
+          window.location.reload();
+        } else {
+          console.log(data.message);
         }
       });
   };
@@ -97,6 +131,7 @@ const UserProfile = () => {
       .then((data) => {
         if (data.status === "success") {
           alert("update password successful");
+          window.location.reload();
         }
       });
   };
@@ -142,6 +177,34 @@ const UserProfile = () => {
           </nav>
 
           <div className="user-view__content">
+            <div className="user-view__form-container">
+              <h2 className="heading-secondary ma-bt-md">Update Avatar</h2>
+              <form className="form form-user-data"></form>
+              <div className="form__group form__photo-upload">
+                <img className="form__user-photo" src={avatar} alt="User" />
+                <input
+                  className="form__upload"
+                  type="file"
+                  accept="image/*"
+                  id="photo"
+                  name="photo"
+                  onChange={avatarHandler}
+                />
+                <label for="photo">Choose new photo</label>
+              </div>
+              <div className="form__group right ">
+                <button
+                  className="btn btn--small btn--green"
+                  type="submit"
+                  onClick={updateProfileHandler}
+                >
+                  Update avatar
+                </button>
+              </div>
+            </div>
+
+            <div className="line">&nbsp;</div>
+
             <div className="user-view__form-container">
               <h2 className="heading-secondary ma-bt-md">
                 Your account settings
@@ -190,22 +253,8 @@ const UserProfile = () => {
                     onChange={phoneHandler}
                   />
                 </div>
-                <div className="form__group form__photo-upload">
-                  <img
-                    className="form__user-photo"
-                    src="/img/users/user-14.jpg"
-                    alt="User"
-                  />
-                  <input
-                    className="form__upload"
-                    type="file"
-                    accept="image/*"
-                    id="photo"
-                    name="photo"
-                  />
-                  <label for="photo">Choose new photo</label>
-                </div>
-                <div className="form__group right">
+
+                <div className="form__group right ">
                   <button
                     className="btn btn--small btn--green"
                     type="submit"
@@ -217,6 +266,7 @@ const UserProfile = () => {
               </form>
             </div>
             <div className="line">&nbsp;</div>
+
             <div className="user-view__form-container">
               <h2 className="heading-secondary ma-bt-md">Password change</h2>
               <form className="form form-user-password">
