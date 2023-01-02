@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Rate from "../Rate/Rate";
 import Room from "./Room/Room";
-
+import "./Rating.css";
+import { FaStar } from "react-icons/fa";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,6 +17,9 @@ const HotelDetails = (props) => {
   const [hotelRoomData, setHotelRoomData] = useState(
     props.roomData.filter((Element) => Element.hotel === hotelDetailData._id)
   );
+
+  const [rating, setRating] = useState(0);
+  const [rating2, setRating2] = useState(0);
 
   const testOrderedRoom = [];
 
@@ -37,6 +42,7 @@ const HotelDetails = (props) => {
     const sendOrder = orderedRoom.filter((room) => room.quantity !== 0);
     console.log(sendOrder);
   };
+
   return (
     <React.Fragment>
       <section
@@ -107,7 +113,7 @@ const HotelDetails = (props) => {
                   alt="Lead guide"
                   className="overview-box__img"
                 />
-                <span className="overview-box__label">Quản trị viên</span>
+                <span className="overview-box__label">Hotel Admin</span>
                 <span className="overview-box__text">0969834945</span>
               </div>
               <div className="overview-box__detail">
@@ -116,7 +122,7 @@ const HotelDetails = (props) => {
                   alt="Tour guide"
                   className="overview-box__img"
                 />
-                <span className="overview-box__label">Quản trị viên</span>
+                <span className="overview-box__label">Hotel Admin</span>
                 <span className="overview-box__text">0969834945</span>
               </div>
               <div className="overview-box__detail">
@@ -125,7 +131,7 @@ const HotelDetails = (props) => {
                   alt="Intern"
                   className="overview-box__img"
                 />
-                <span className="overview-box__label">Quản trị viên</span>
+                <span className="overview-box__label">Hotel Admin</span>
                 <span className="overview-box__text">0969834945</span>
               </div>
             </div>
@@ -404,6 +410,115 @@ const HotelDetails = (props) => {
             onClick={orderSubmitHandler}
           />
         </form>
+      </section>
+      <section className="section-cta ">
+        <div className="">
+          <div className="cta " id="rating-section">
+            <h2 id="rating-section-title">Tell us about your experience</h2>
+            <div className="line" id="break-line">
+              &nbsp;
+            </div>
+            <div id="star-component-wrapper">
+              <div id="star-and-description-wrapper">
+                <Rate
+                  rating={rating}
+                  onRating={(rate) => setRating(rate)}
+                  count={10}
+                />
+                <p id="rating-description">Rating description - {rating}</p>
+              </div>
+
+              <textarea
+                id="textarea-styling"
+                placeholder="Leave your comment about this hotel in here"
+              ></textarea>
+              <div id="button-wrapper">
+                <button
+                  className="btn btn--green btn--small"
+                  id="add-margin-bottom"
+                >
+                  Submit comment
+                </button>
+              </div>
+            </div>
+
+            <h2 id="rating-section-title">Comment section</h2>
+            <div id="user-reviews-list">
+              <div className="line" id="break-line">
+                &nbsp;
+              </div>
+              <div id="comment-container">
+                <div id="comment-user-info-container">
+                  <div>
+                    <img
+                      src={require("../../img/users/user-1.jpg")}
+                      alt="User "
+                      className="nav__user-img"
+                      id="comment-user-img"
+                    />
+                  </div>
+                  <div id="comment-user-info">
+                    <div id="comment-user-name">
+                      <span>
+                        Nguyen Ha Son -{" "}
+                        <span style={{ color: "#666", fontSize: "1.5rem" }}>
+                          8
+                        </span>
+                      </span>
+                      <FaStar id="star-display" />
+                    </div>
+                    <div id="comment-time">Commented 1 hour ago</div>
+                  </div>
+                </div>
+
+                <div id="comment-content">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque euismod quam vel quam vehicula, a tempor leo lobortis.
+                  Maecenas iaculis nisi lorem, quis commodo justo interdum
+                  maximus. Aliquam blandit ac nunc vitae mattis. Nam facilisis
+                  tellus eu nisi convallis consequat. Morbi ut diam leo. Fusce
+                  id maximus nibh.
+                </div>
+              </div>
+              <div className="line" id="break-line">
+                &nbsp;
+              </div>
+              <div id="comment-container">
+                <div id="comment-user-info-container">
+                  <div>
+                    <img
+                      src={require("../../img/users/user-1.jpg")}
+                      alt="User "
+                      className="nav__user-img"
+                      id="comment-user-img"
+                    />
+                  </div>
+                  <div id="comment-user-info">
+                    <div id="comment-user-name">
+                      <span>
+                        Nguyen Ha Son -{" "}
+                        <span style={{ color: "#666", fontSize: "1.5rem" }}>
+                          8
+                        </span>
+                      </span>
+                      <FaStar id="star-display" />
+                    </div>
+                    <div id="comment-time">Commented 1 hour ago</div>
+                  </div>
+                </div>
+
+                <div id="comment-content">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque euismod quam vel quam vehicula, a tempor leo lobortis.
+                  Maecenas iaculis nisi lorem, quis commodo justo interdum
+                  maximus. Aliquam blandit ac nunc vitae mattis. Nam facilisis
+                  tellus eu nisi convallis consequat. Morbi ut diam leo. Fusce
+                  id maximus nibh.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </React.Fragment>
   );

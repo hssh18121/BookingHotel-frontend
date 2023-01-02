@@ -1,0 +1,84 @@
+#rating-section {
+  width: 1050px;
+  font-size: 18px;
+  padding: 3rem;
+}
+
+#rating-section-title {
+  margin-bottom: 1rem;
+  font-size: 3.5rem;
+}
+#star-and-description-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+#rating-description {
+  padding-bottom: 1rem;
+  font-size: 2rem;
+}
+
+#star-component-wrapper {
+  text-align: center;
+  font-size: 3rem;
+}
+#textarea-styling {
+  height: auto;
+  padding: 1.3rem 1.6rem;
+  width: 100%;
+  border: 1px solid #777;
+  border-radius: 5px;
+  height: 15rem;
+  -webkit-appearance: none;
+  display: block;
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  margin-bottom: 2rem;
+}
+
+#button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+#add-margin-bottom {
+  margin-bottom: 3rem;
+}
+#break-line {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+#comment-user-info-container {
+  display: flex;
+  align-items: center;
+}
+
+#comment-user-img {
+  width: 70px;
+  height: 70px;
+}
+
+#comment-user-name {
+  font-weight: 700;
+  color: #333;
+}
+
+#comment-time {
+  font-size: 1.25rem;
+}
+
+#comment-content {
+  color: #555;
+  font-size: 1.75rem;
+}
+
+#star-display {
+  color: rgb(245, 235, 59);
+  padding-top: 0.5rem;
+}
