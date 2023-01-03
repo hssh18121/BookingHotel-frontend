@@ -10,6 +10,8 @@ import HotelDetails from "../HotelDetails/HotelDetails";
 import UserProfile from "../UserProfile/UserProfile";
 import Home from "../Home/Home";
 import BookingHistory from "../UserProfile/BookingHistory";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const MainContent = (props) => {
   return (
     <HashRouter>

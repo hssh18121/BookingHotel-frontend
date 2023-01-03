@@ -27,8 +27,8 @@ function App() {
         <p>Loading....</p>
       ) : (
         <MainContent
-          hotelData={backendData.data.hotels}
-          roomData={backendRoomData.data.rooms}
+          hotelData={backendData.data?.hotels}
+          roomData={backendRoomData.data?.rooms}
         />
       )}
     </React.Fragment>

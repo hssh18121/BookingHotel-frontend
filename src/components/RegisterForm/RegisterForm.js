@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import "./RegisterForm.css";
 const RegisterForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -49,9 +50,31 @@ const RegisterForm = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("Signup successful");
-
-          window.location.href = "./login";
+          toast.success("Register successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          window.setTimeout(function () {
+            // Move to a new location or you can do something else
+            window.location.href = "./login";
+          }, 3000);
+        } else {
+          toast.error("Error! Register failed", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   };

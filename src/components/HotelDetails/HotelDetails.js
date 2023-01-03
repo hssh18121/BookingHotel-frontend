@@ -5,6 +5,7 @@ import Room from "./Room/Room";
 import "./Rating.css";
 import { FaStar } from "react-icons/fa";
 import UserRating from "./UserRating.js/UserRating";
+import { ToastContainer, toast } from "react-toastify";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,7 +31,7 @@ const HotelDetails = (props) => {
   }, []);
 
   const [rating, setRating] = useState(0);
-  const [rating2, setRating2] = useState(0);
+
   const [comment, setComment] = useState("");
 
   const testOrderedRoom = [];
@@ -84,8 +85,31 @@ const HotelDetails = (props) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.status === "success") {
-            alert("update rating successfully");
-            window.location.reload();
+            toast.success("Updating rating successfully!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+
+            window.setTimeout(function () {
+              window.location.reload();
+            }, 3000);
+          } else {
+            toast.error("An error occured! Update rating failed", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         });
     } else {
@@ -106,8 +130,31 @@ const HotelDetails = (props) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.status === "success") {
-            alert("Create rating successfully");
-            window.location.reload();
+            toast.success("Create rating successfully!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+
+            window.setTimeout(function () {
+              window.location.reload();
+            }, 3000);
+          } else {
+            toast.error("An error occured! Create rating failed", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         });
     }

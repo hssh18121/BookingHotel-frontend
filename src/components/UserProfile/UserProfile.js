@@ -1,6 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const UserProfile = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -29,6 +32,17 @@ const UserProfile = () => {
           setPhone(data.data.user.phone);
           setUsername(data.data.user.username);
           setAvatar(data.data.user.avatar);
+        } else {
+          toast.error("An error occured! Update failed!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   }, []);
@@ -78,8 +92,27 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("update successful");
-          window.location.reload();
+          toast.success("Update profile successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          toast.error("An error occured! Update avatar failed!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   };
@@ -103,10 +136,27 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("update profile successful");
-          window.location.reload();
+          toast.success("Update avatar successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         } else {
-          console.log(data.message);
+          toast.error("Can not update avatar", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   };
@@ -130,8 +180,30 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("update password successful");
-          window.location.reload();
+          toast.success("Update avatar successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          // window.setTimeout(function () {
+          //   window.location.href = "./hotels";
+          // }, 3000);
+        } else {
+          toast.error("Change password failed!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   };
@@ -195,7 +267,7 @@ const UserProfile = () => {
               <div className="form__group right ">
                 <button
                   className="btn btn--small btn--green"
-                  type="submit"
+                  to="/user-profile"
                   onClick={updateProfileHandler}
                 >
                   Update avatar
@@ -257,7 +329,7 @@ const UserProfile = () => {
                 <div className="form__group right ">
                   <button
                     className="btn btn--small btn--green"
-                    type="submit"
+                    to="/user-profile"
                     onClick={updateHandler}
                   >
                     Save settings

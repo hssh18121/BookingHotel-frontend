@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Header = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -9,6 +11,16 @@ const Header = (props) => {
 
     if (storedUserLoggedInInformation) {
       setIsLoggedIn(true);
+      toast.success("Login under user role!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   }, []);
 
@@ -17,6 +29,16 @@ const Header = (props) => {
     localStorage.removeItem("username");
     localStorage.removeItem("userID");
     setIsLoggedIn(false);
+    toast.success("Logout successfully!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   return (
     <React.Fragment>

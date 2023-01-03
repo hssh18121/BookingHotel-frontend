@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -29,11 +31,34 @@ const LoginForm = (props) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("login successful");
           localStorage.setItem("token", data.data.token);
           localStorage.setItem("username", data.data.username);
           localStorage.setItem("userID", data.data.userID);
-          window.location.href = "./hotels";
+          toast.success("Login successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          window.setTimeout(function () {
+            window.location.href = "./hotels";
+          }, 3000);
+          // window.location.href = "./hotels";
+        } else {
+          toast.error("Error! Login failed", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   };
