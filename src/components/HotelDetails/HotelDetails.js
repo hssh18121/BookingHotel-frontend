@@ -4,6 +4,7 @@ import Rate from "../Rate/Rate";
 import Room from "./Room/Room";
 import "./Rating.css";
 import { FaStar } from "react-icons/fa";
+import UserRating from "./UserRating.js/UserRating";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,8 +19,19 @@ const HotelDetails = (props) => {
     props.roomData.filter((Element) => Element.hotel === hotelDetailData._id)
   );
 
+  const [hotelRating, setHotelRating] = useState([{}]);
+  useEffect(() => {
+    fetch(`api/rating/${hotelDetailData._id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setHotelRating(data);
+        console.log(data);
+      });
+  }, []);
+
   const [rating, setRating] = useState(0);
   const [rating2, setRating2] = useState(0);
+  const [comment, setComment] = useState("");
 
   const testOrderedRoom = [];
 
@@ -41,6 +53,64 @@ const HotelDetails = (props) => {
     e.preventDefault();
     const sendOrder = orderedRoom.filter((room) => room.quantity !== 0);
     console.log(sendOrder);
+  };
+
+  const commentHandler = (e) => {
+    setComment(e.target.value);
+  };
+
+  const userRatingSubmitHandler = (e) => {
+    console.log(rating, comment);
+    e.preventDefault();
+    const star = rating;
+    const userRating = hotelRating.data?.ratings.find(
+      (element) => element.user._id === localStorage.getItem("userID")
+    );
+    if (userRating !== undefined) {
+      fetch(`http://localhost:5000/api/rating/${hotelDetailData._id}`, {
+        method: "PUT",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          star,
+          comment,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            alert("update rating successfully");
+            window.location.reload();
+          }
+        });
+    } else {
+      fetch(`http://localhost:5000/api/rating/${hotelDetailData._id}`, {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          star,
+          comment,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "success") {
+            alert("Create rating successfully");
+            window.location.reload();
+          }
+        });
+    }
   };
 
   return (
@@ -431,11 +501,14 @@ const HotelDetails = (props) => {
               <textarea
                 id="textarea-styling"
                 placeholder="Leave your comment about this hotel in here"
+                value={comment}
+                onChange={commentHandler}
               ></textarea>
               <div id="button-wrapper">
                 <button
                   className="btn btn--green btn--small"
                   id="add-margin-bottom"
+                  onClick={userRatingSubmitHandler}
                 >
                   Submit comment
                 </button>
@@ -444,78 +517,9 @@ const HotelDetails = (props) => {
 
             <h2 id="rating-section-title">Comment section</h2>
             <div id="user-reviews-list">
-              <div className="line" id="break-line">
-                &nbsp;
-              </div>
-              <div id="comment-container">
-                <div id="comment-user-info-container">
-                  <div>
-                    <img
-                      src={require("../../img/users/user-1.jpg")}
-                      alt="User "
-                      className="nav__user-img"
-                      id="comment-user-img"
-                    />
-                  </div>
-                  <div id="comment-user-info">
-                    <div id="comment-user-name">
-                      <span>
-                        Nguyen Ha Son -{" "}
-                        <span style={{ color: "#666", fontSize: "1.5rem" }}>
-                          8
-                        </span>
-                      </span>
-                      <FaStar id="star-display" />
-                    </div>
-                    <div id="comment-time">Commented 1 hour ago</div>
-                  </div>
-                </div>
-
-                <div id="comment-content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Quisque euismod quam vel quam vehicula, a tempor leo lobortis.
-                  Maecenas iaculis nisi lorem, quis commodo justo interdum
-                  maximus. Aliquam blandit ac nunc vitae mattis. Nam facilisis
-                  tellus eu nisi convallis consequat. Morbi ut diam leo. Fusce
-                  id maximus nibh.
-                </div>
-              </div>
-              <div className="line" id="break-line">
-                &nbsp;
-              </div>
-              <div id="comment-container">
-                <div id="comment-user-info-container">
-                  <div>
-                    <img
-                      src={require("../../img/users/user-1.jpg")}
-                      alt="User "
-                      className="nav__user-img"
-                      id="comment-user-img"
-                    />
-                  </div>
-                  <div id="comment-user-info">
-                    <div id="comment-user-name">
-                      <span>
-                        Nguyen Ha Son -{" "}
-                        <span style={{ color: "#666", fontSize: "1.5rem" }}>
-                          8
-                        </span>
-                      </span>
-                      <FaStar id="star-display" />
-                    </div>
-                    <div id="comment-time">Commented 1 hour ago</div>
-                  </div>
-                </div>
-
-                <div id="comment-content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Quisque euismod quam vel quam vehicula, a tempor leo lobortis.
-                  Maecenas iaculis nisi lorem, quis commodo justo interdum
-                  maximus. Aliquam blandit ac nunc vitae mattis. Nam facilisis
-                  tellus eu nisi convallis consequat. Morbi ut diam leo. Fusce
-                  id maximus nibh.
-                </div>
-              </div>
+              {hotelRating.data?.ratings.map((element) => (
+                <UserRating ratingData={element} />
+              ))}
             </div>
           </div>
         </div>

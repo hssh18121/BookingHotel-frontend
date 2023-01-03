@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import "./BookingHistory.css";
 const BookingHistory = () => {
   useEffect(() => {
-    fetch(`http://localhost:5000/api/me`, {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
+    fetch(
+      `http://localhost:5000/api/booking/${localStorage.getItem("userID")}`,
+      {
+        method: "GET",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
