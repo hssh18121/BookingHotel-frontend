@@ -33,7 +33,7 @@ const UserProfile = () => {
           setUsername(data.data.user.username);
           setAvatar(data.data.user.avatar);
         } else {
-          toast.error("An error occured! Update failed!", {
+          toast.error("An error occured! Can not get user data!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -146,6 +146,9 @@ const UserProfile = () => {
             progress: undefined,
             theme: "light",
           });
+          window.setTimeout(function () {
+            window.location.reload();
+          }, 3000);
         } else {
           toast.error("Can not update avatar", {
             position: "top-right",

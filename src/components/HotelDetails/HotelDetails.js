@@ -54,6 +54,36 @@ const HotelDetails = (props) => {
     e.preventDefault();
     const sendOrder = orderedRoom.filter((room) => room.quantity !== 0);
     console.log(sendOrder);
+    const bookings = sendOrder.map((anOrder) => {
+      anOrder.checkIn = "2023-01-6";
+      anOrder.checkOut = "2023-01-8";
+      anOrder.room = anOrder._id;
+      return anOrder;
+    });
+    fetch("http://localhost:5000/api/booking", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+
+      body: JSON.stringify({
+        bookings,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("Booking successfully");
+          console.log(data.data);
+          // window.location.href = "./hotels";
+        } else {
+          console.log(data.message);
+        }
+      });
   };
 
   const commentHandler = (e) => {

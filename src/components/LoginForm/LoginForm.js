@@ -46,7 +46,7 @@ const LoginForm = (props) => {
           });
           window.setTimeout(function () {
             window.location.href = "./hotels";
-          }, 3000);
+          }, 2000);
           // window.location.href = "./hotels";
         } else {
           toast.error("Error! Login failed", {
