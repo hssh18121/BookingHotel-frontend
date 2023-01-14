@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FeaturedCard from "../FeaturedCard/FeaturedCard";
+
 import "./Main.css";
 const Main = (props) => {
   const [filteredData, setFilteredData] = useState(props.hotelData);
@@ -29,7 +30,7 @@ const Main = (props) => {
           <div className="tool-bar">
             <button className="categories-selector">
               <div className="flex-categories">
-                Thanh Pho
+                Search bar
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 arrow-down"
@@ -85,6 +86,7 @@ const Main = (props) => {
                 key={element._id}
                 image={element.image}
                 description={element.description}
+                province={element.province}
               />
             ))
           ) : (

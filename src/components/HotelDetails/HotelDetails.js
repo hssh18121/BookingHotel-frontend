@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import Rate from "../Rate/Rate";
 import Room from "./Room/Room";
 import "./Rating.css";
-import { FaStar } from "react-icons/fa";
+
 import UserRating from "./UserRating.js/UserRating";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { Fade } from "react-awesome-reveal";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -13,11 +14,10 @@ const HotelDetails = (props) => {
 
   const { id } = useParams();
 
-  const [hotelDetailData, setHotelDetailedData] = useState(
-    props.hotelData.find((Element) => Element._id === id)
-  );
-  const [hotelRoomData, setHotelRoomData] = useState(
-    props.roomData.filter((Element) => Element.hotel === hotelDetailData._id)
+  const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
+
+  const hotelRoomData = props.roomData.filter(
+    (Element) => Element.hotel === hotelDetailData._id
   );
 
   const [hotelRating, setHotelRating] = useState([{}]);
@@ -192,7 +192,7 @@ const HotelDetails = (props) => {
 
   return (
     <React.Fragment>
-      <section
+      <Fade
         className="section-header"
         style={{
           backgroundImage: `linear-gradient(rgba(34, 34, 34, 0.6),rgba(34, 34, 34, 0.6)), url(${hotelDetailData.image}})`,
@@ -220,7 +220,7 @@ const HotelDetails = (props) => {
             </div>
           </div>
         </div>
-      </section>
+      </Fade>
 
       <section className="section-description">
         <div className="overview-box">

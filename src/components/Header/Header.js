@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { toast } from "react-toastify";
+import "./Header.css";
 import "react-toastify/dist/ReactToastify.css";
 const Header = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -73,7 +74,7 @@ const Header = (props) => {
   };
   return (
     <React.Fragment>
-      <header className="header">
+      <header className="header sticky">
         <nav className="nav nav--tours">
           <Link className="nav__el" to="/">
             <FaHome />

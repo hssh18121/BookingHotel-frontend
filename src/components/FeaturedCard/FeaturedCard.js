@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import {
+  FaLocationArrow,
+  FaGlobeAsia,
+  FaMoneyBillWave,
+  FaHotel,
+} from "react-icons/fa";
 const FeaturedCard = (props) => {
   return (
     <React.Fragment>
@@ -17,31 +22,24 @@ const FeaturedCard = (props) => {
         </div>
 
         <div className="card__details">
-          <h4 className="card__sub-heading">Viet Nam</h4>
+          <h4 className="card__sub-heading">Accor Franchise</h4>
           <p className="card__text">Featured Hotel</p>
           <div className="card__data">
-            <svg className="card__icon">
-              {/* <use xlink:href="img/icons.svg#icon-map-pin"></use> */}
-            </svg>
-            <span>Ha Noi, Viet Nam</span>
+            <FaLocationArrow />
+
+            <span>{props.province}</span>
           </div>
           <div className="card__data">
-            <svg className="card__icon">
-              {/* <use xlink:href="img/icons.svg#icon-calendar"></use> */}
-            </svg>
-            <span>Capacity</span>
+            <FaGlobeAsia />
+            <span>Vietnam</span>
           </div>
           <div className="card__data">
-            <svg className="card__icon">
-              {/* <use xlink:href="img/icons.svg#icon-flag"></use> */}
-            </svg>
+            <FaMoneyBillWave />
+            <span>Discount Available</span>
+          </div>
+          <div className="card__data">
+            <FaHotel />
             <span>Room Available</span>
-          </div>
-          <div className="card__data">
-            <svg className="card__icon">
-              {/* <use xlink:href="img/icons.svg#icon-user"></use> */}
-            </svg>
-            <span>8 people</span>
           </div>
         </div>
 

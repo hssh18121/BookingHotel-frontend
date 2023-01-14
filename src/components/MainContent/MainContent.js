@@ -12,6 +12,7 @@ import Home from "../Home/Home";
 import BookingHistory from "../UserProfile/BookingHistory";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReviewHistory from "../UserProfile/ReviewHistory";
 const MainContent = (props) => {
   return (
     <HashRouter>
@@ -41,6 +42,9 @@ const MainContent = (props) => {
         </Route>
         <Route exact path="/order-history">
           <BookingHistory />
+        </Route>
+        <Route exact path="/my-reviews-history">
+          <ReviewHistory />
         </Route>
       </Switch>
       {/* {openLoginForm ? <LoginForm /> : <Main hotelData={props.hotelData} />} */}

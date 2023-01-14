@@ -12,9 +12,9 @@ const UserRating = (props) => {
             <img
               //   src={require("../../../img/users/user-1.jpg")}
               src={
-                props.ratingData.user.avatar !== undefined
+                props.ratingData.user.avatar
                   ? props.ratingData.user.avatar
-                  : require("../../../img/users/user-1.jpg")
+                  : require("../../../img/users/default.jpg")
               }
               alt="User "
               className="nav__user-img"
