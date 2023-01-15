@@ -1337,7 +1337,20 @@ body {
   transform: translateY(-2px);
 }
 
-/* Room list css */
+/* Hotel details additional css */
+.checkin-checkout-container {
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  gap: 2rem;
+  font-size: 2rem;
+  color: #343a40;
+}
+
+.checkin-out-input {
+  font-size: 2rem;
+  color: #343a40;
+}
 table {
   width: 1050px;
 

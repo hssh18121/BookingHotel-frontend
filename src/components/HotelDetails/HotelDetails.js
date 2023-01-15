@@ -8,12 +8,45 @@ import UserRating from "./UserRating.js/UserRating";
 import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
 const HotelDetails = (props) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   const { id } = useParams();
+  const [checkinDate, setCheckinDate] = useState();
+  const [checkoutDate, setCheckoutDate] = useState();
+  const showSuccessMessage = (message) => {
+    toast.success(`${message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
+  const showErrorMessage = (message) => {
+    toast.error(`${message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+  const checkinDateHandler = (e) => {
+    setCheckinDate(e.target.value);
+  };
+
+  const checkoutDateHandler = (e) => {
+    setCheckoutDate(e.target.value);
+  };
   const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
 
   const hotelRoomData = props.roomData.filter(
@@ -52,11 +85,14 @@ const HotelDetails = (props) => {
 
   const orderSubmitHandler = (e) => {
     e.preventDefault();
+    if (!localStorage.getItem("token")) {
+      showErrorMessage("You need to login to perform this action!");
+    }
     const sendOrder = orderedRoom.filter((room) => room.quantity !== 0);
     console.log(sendOrder);
     const bookings = sendOrder.map((anOrder) => {
-      anOrder.checkIn = "2023-01-6";
-      anOrder.checkOut = "2023-01-8";
+      anOrder.checkIn = checkinDate;
+      anOrder.checkOut = checkoutDate;
       anOrder.room = anOrder._id;
       return anOrder;
     });
@@ -77,11 +113,14 @@ const HotelDetails = (props) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          alert("Booking successfully");
+          showSuccessMessage("Booking successfully");
           console.log(data.data);
-          // window.location.href = "./hotels";
+          window.setTimeout(function () {
+            window.location.href = "/booking-history";
+          }, 2000);
         } else {
           console.log(data.message);
+          showErrorMessage("An error occured! Booking failed");
         }
       });
   };
@@ -91,8 +130,10 @@ const HotelDetails = (props) => {
   };
 
   const userRatingSubmitHandler = (e) => {
-    console.log(rating, comment);
     e.preventDefault();
+    if (!localStorage.getItem("token")) {
+      showErrorMessage("You need to login to perform this action");
+    }
     const star = rating;
     const userRating = hotelRating.data?.ratings.find(
       (element) => element.user._id === localStorage.getItem("userID")
@@ -115,31 +156,13 @@ const HotelDetails = (props) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.status === "success") {
-            toast.success("Updating rating successfully!", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            showSuccessMessage("Update rating successfully");
 
             window.setTimeout(function () {
               window.location.reload();
             }, 3000);
           } else {
-            toast.error("An error occured! Update rating failed", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            showErrorMessage("An error occured! Update failed");
           }
         });
     } else {
@@ -160,31 +183,13 @@ const HotelDetails = (props) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.status === "success") {
-            toast.success("Create rating successfully!", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            showSuccessMessage("Create rating successfully!");
 
             window.setTimeout(function () {
               window.location.reload();
-            }, 3000);
+            }, 2000);
           } else {
-            toast.error("An error occured! Create rating failed", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            showErrorMessage("An error occured! Create rating failed");
           }
         });
     }
@@ -288,12 +293,7 @@ const HotelDetails = (props) => {
         <div className="description-box">
           <h2 className="heading-secondary ma-bt-lg">Mô tả về khách sạn</h2>
           <p className="description__text">{hotelDetailData.description}</p>
-          <p className="description__text">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum!
-          </p>
+          <p className="description__text"></p>
         </div>
       </section>
 
@@ -527,6 +527,31 @@ const HotelDetails = (props) => {
 
       <section className="section-cta flex-justify-center">
         <form>
+          <div className="checkin-checkout-container">
+            <div className="checkin-checkout-wrapper">
+              <label for="checkin">Checkin: </label>
+              <input
+                type="date"
+                id="checkin"
+                name="checkin"
+                className="checkin-out-input"
+                value={checkinDate}
+                onChange={checkinDateHandler}
+              />
+            </div>
+            <div className="checkin-checkout-wrapper">
+              <label for="checkout">Checkout: </label>
+              <input
+                type="date"
+                id="checkout"
+                name="checkout"
+                className="checkin-out-input"
+                value={checkoutDate}
+                onChange={checkoutDateHandler}
+              />
+            </div>
+          </div>
+
           <table>
             <thead>
               <tr>
