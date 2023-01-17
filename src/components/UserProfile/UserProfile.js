@@ -256,7 +256,11 @@ const UserProfile = () => {
               <h2 className="heading-secondary ma-bt-md">Update Avatar</h2>
               <form className="form form-user-data"></form>
               <div className="form__group form__photo-upload">
-                <img className="form__user-photo" src={avatar} alt="User" />
+                <img
+                  className="form__user-photo"
+                  src={avatar ? avatar : require("../../img/users/default.jpg")}
+                  alt="User"
+                />
                 <input
                   className="form__upload"
                   type="file"

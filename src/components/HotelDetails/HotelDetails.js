@@ -8,13 +8,33 @@ import UserRating from "./UserRating.js/UserRating";
 import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
 const HotelDetails = (props) => {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { id } = useParams();
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
+  const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
+  const hotelRoomData = props.roomData.filter(
+    (Element) => Element.hotel === hotelDetailData._id
+  );
+
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const testOrderedRoom = [];
+  const [orderedRoom, setOrderedRoom] = useState(testOrderedRoom);
+
+  const [hotelRating, setHotelRating] = useState([{}]);
+  useEffect(() => {
+    fetch(`api/rating/${hotelDetailData._id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setHotelRating(data);
+        console.log(data);
+      });
+  }, []);
+
   const showSuccessMessage = (message) => {
     toast.success(`${message}`, {
       position: "top-right",
@@ -40,6 +60,7 @@ const HotelDetails = (props) => {
       theme: "light",
     });
   };
+
   const checkinDateHandler = (e) => {
     setCheckinDate(e.target.value);
   };
@@ -47,33 +68,15 @@ const HotelDetails = (props) => {
   const checkoutDateHandler = (e) => {
     setCheckoutDate(e.target.value);
   };
-  const hotelDetailData = props.hotelData.find((Element) => Element._id === id);
 
-  const hotelRoomData = props.roomData.filter(
-    (Element) => Element.hotel === hotelDetailData._id
-  );
-
-  const [hotelRating, setHotelRating] = useState([{}]);
-  useEffect(() => {
-    fetch(`api/rating/${hotelDetailData._id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setHotelRating(data);
-        console.log(data);
-      });
-  }, []);
-
-  const [rating, setRating] = useState(0);
-
-  const [comment, setComment] = useState("");
-
-  const testOrderedRoom = [];
+  const commentHandler = (e) => {
+    setComment(e.target.value);
+  };
 
   hotelRoomData.forEach((element) => {
     element.quantity = 0;
     testOrderedRoom.push(element);
   });
-  const [orderedRoom, setOrderedRoom] = useState(testOrderedRoom);
 
   const getOrderedRoomQuantity = (quantity, id) => {
     setOrderedRoom((items) => {
@@ -123,10 +126,6 @@ const HotelDetails = (props) => {
           showErrorMessage("An error occured! Booking failed");
         }
       });
-  };
-
-  const commentHandler = (e) => {
-    setComment(e.target.value);
   };
 
   const userRatingSubmitHandler = (e) => {
@@ -215,7 +214,9 @@ const HotelDetails = (props) => {
               <svg className="heading-box__icon">
                 {/* <use xlink:href="img/icons.svg#icon-clock"></use> */}
               </svg>
-              <span className="heading-box__text">Ha Noi</span>
+              <span className="heading-box__text">
+                {hotelDetailData.province}
+              </span>
             </div>
             <div className="heading-box__detail">
               <svg className="heading-box__icon">

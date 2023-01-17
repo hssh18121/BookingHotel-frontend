@@ -1345,11 +1345,13 @@ body {
   gap: 2rem;
   font-size: 2rem;
   color: #343a40;
+  font-weight: 700;
 }
 
 .checkin-out-input {
   font-size: 2rem;
   color: #343a40;
+  font-weight: 400;
 }
 table {
   width: 1050px;

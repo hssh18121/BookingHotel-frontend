@@ -7,6 +7,7 @@ const RegisterForm = () => {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredFullname, setEnteredFullname] = useState("");
   const [enteredPhone, setEnteredPhone] = useState("");
+  const [enteredPasswordConfirm, setEnteredPasswordConfirm] = useState("");
   const EnteredEmailHandler = (e) => {
     setEnteredEmail(e.target.value);
   };
@@ -22,6 +23,11 @@ const RegisterForm = () => {
   const EnteredPhoneHandler = (e) => {
     setEnteredPhone(e.target.value);
   };
+
+  const EnteredPasswordConfirmHandler = (e) => {
+    setEnteredPasswordConfirm(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let username = enteredUsername;
@@ -29,6 +35,7 @@ const RegisterForm = () => {
     let email = enteredEmail;
     let fullname = enteredFullname;
     let phone = enteredPhone;
+    let confirmPassword = enteredPasswordConfirm;
     console.log(username, password, email, fullname, phone);
 
     fetch("http://localhost:5000/api/auth/signup", {
@@ -42,6 +49,7 @@ const RegisterForm = () => {
       body: JSON.stringify({
         username,
         password,
+        confirmPassword,
         email,
         fullname,
         phone,
@@ -63,7 +71,7 @@ const RegisterForm = () => {
           window.setTimeout(function () {
             // Move to a new location or you can do something else
             window.location.href = "./login";
-          }, 3000);
+          }, 2000);
         } else {
           toast.error("Error! Register failed", {
             position: "top-right",
@@ -113,18 +121,15 @@ const RegisterForm = () => {
             </div>
 
             <div className="display-flex">
-              <div className="form__group " id="form__group">
-                <label className="form__label" for="password">
-                  Password
-                </label>
+              <div className="form__group" id="form__group">
+                <label className="form__label">Phone number</label>
                 <input
                   className="form__input"
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
+                  id="phone"
+                  type="text"
+                  placeholder="0902930941"
                   required=""
-                  minlength="8"
-                  onChange={EnteredPasswordHandler}
+                  onChange={EnteredPhoneHandler}
                 />
               </div>
               <div className="form__group " id="form__group">
@@ -141,16 +146,35 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div className="form__group">
-              <label className="form__label">Phone number</label>
-              <input
-                className="form__input"
-                id="phone"
-                type="text"
-                placeholder="0902930941"
-                required=""
-                onChange={EnteredPhoneHandler}
-              />
+            <div className="display-flex">
+              <div className="form__group " id="form__group">
+                <label className="form__label" for="password">
+                  Password
+                </label>
+                <input
+                  className="form__input"
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  required=""
+                  minlength="8"
+                  onChange={EnteredPasswordHandler}
+                />
+              </div>
+              <div className="form__group " id="form__group">
+                <label className="form__label" for="password-confirm">
+                  Password Confirm
+                </label>
+                <input
+                  className="form__input"
+                  id="password-confirm"
+                  type="password"
+                  placeholder="••••••••"
+                  required=""
+                  minlength="8"
+                  onChange={EnteredPasswordConfirmHandler}
+                />
+              </div>
             </div>
 
             <div className="form__group">

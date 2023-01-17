@@ -95,7 +95,15 @@ const Header = (props) => {
               Logout
             </Link>
             <Link to="/user-profile" className="nav__el">
-              <img src={userAvatar} alt="User " className="nav__user-img" />
+              <img
+                src={
+                  userAvatar
+                    ? userAvatar
+                    : require("../../img/users/default.jpg")
+                }
+                alt="User "
+                className="nav__user-img"
+              />
               <span>{localStorage.getItem("username")}</span>
             </Link>
 
