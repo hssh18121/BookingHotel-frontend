@@ -45,11 +45,11 @@ const BookingHistory = (props) => {
   const formattedBookingsList = bookingsList.map((el) => {
     const createdDate = new Date(el.createdAt);
     const checkinDate = new Date(el.checkinAt);
-    const checkoutDate = new Date(el.checkOutAt);
+    const checkoutDate = new Date(el.checkoutAt);
 
     el.createdAt = createdDate.toDateString();
     el.checkinAt = checkinDate.toDateString();
-    el.checkOutAt = checkoutDate.toDateString();
+    el.checkoutAt = checkoutDate.toDateString();
     const roomData = props.allRoomData.find((room) => room._id === el.room);
     const hotelName = props.allHotelData.find(
       (hotel) => hotel._id === roomData?.hotel

@@ -29,3 +29,13 @@
 #status--processing {
   color: #f59f00;
 }
+
+#view-detail-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#view-detail-button:hover {
+  text-decoration: underline;
+}
