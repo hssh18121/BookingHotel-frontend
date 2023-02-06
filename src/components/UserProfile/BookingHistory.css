@@ -13,3 +13,19 @@
 #booking-history-table thead th {
   padding: 12px 24px;
 }
+
+#booking-history-table-orderedDate {
+  width: 30%;
+}
+
+#booking-history-table-roomName {
+  width: 30%;
+}
+
+#booking-history-data {
+  font-size: 15px;
+}
+
+#status--processing {
+  color: #f59f00;
+}

@@ -5,7 +5,10 @@ const Footer = () => {
     <React.Fragment>
       <div className="footer">
         <div className="footer__logo">
-          <img src="img/logo-green.png" alt="Natours logo" />
+          <img
+            src={require("../../img/logo-green-small.png")}
+            alt="Natours logo"
+          />
         </div>
         <ul className="footer__nav">
           <li>

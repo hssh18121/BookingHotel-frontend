@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import "./Room.css";
 const Room = (props) => {
   const [roomOrderQuantity, setRoomOrderQuantity] = useState(0);
+
   const roomOrderQuantityHandler = (e) => {
     setRoomOrderQuantity(Number(e.target.value) || 0);
     props.onGetOrderedRoomQuantity(Number(e.target.value), props.id);

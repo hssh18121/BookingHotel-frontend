@@ -1,29 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./BookingHistory.css";
-const BookingHistory = () => {
+import BookingRoomInfo from "./BookingRoomInfo/BookingRoomInfo";
+const BookingHistory = (props) => {
+  const [bookingsList, setBookingsList] = useState([{}]);
+  const showErrorMessage = (message) => {
+    toast.error(`${message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/api/booking/${localStorage.getItem("userID")}`,
-      {
-        method: "GET",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    )
+    fetch(`http://localhost:5000/api/me`, {
+      method: "GET",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          console.log("Success");
+          setBookingsList(data.data.user.bookings);
+          console.log(data.data.user.bookings);
+        } else {
+          console.log(data.message);
+          showErrorMessage("An error occured! Get booking data failed!");
         }
       });
   }, []);
+
+  const formattedBookingsList = bookingsList.map((el) => {
+    const createdDate = new Date(el.createdAt);
+    const checkinDate = new Date(el.checkinAt);
+    const checkoutDate = new Date(el.checkOutAt);
+
+    el.createdAt = createdDate.toDateString();
+    el.checkinAt = checkinDate.toDateString();
+    el.checkOutAt = checkoutDate.toDateString();
+    const roomData = props.allRoomData.find((room) => room._id === el.room);
+    const hotelName = props.allHotelData.find(
+      (hotel) => hotel._id === roomData?.hotel
+    )?.name;
+
+    el.roomData = roomData;
+    el.hotelName = hotelName;
+    console.log(el);
+    return el;
+  });
 
   return (
     <React.Fragment>
@@ -75,24 +111,18 @@ const BookingHistory = () => {
               <table id="booking-history-table">
                 <thead>
                   <tr>
-                    <th>Date</th>
-                    <th>Price</th>
+                    <th id="booking-history-table-orderedDate">Date</th>
                     <th>Hotel</th>
+                    <th id="booking-history-table-roomName">Room info</th>
                     <th>Status</th>
                     <th>View detail</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <th>12-01-2022</th>
-                    <td>3400000</td>
-                    <td>Mgallery Cat Ba</td>
-                    <td>Success</td>
-                    <td>
-                      <Link to="./">View more</Link>
-                    </td>
-                  </tr>
+                  {formattedBookingsList?.map((element) => (
+                    <BookingRoomInfo roomInfo={element} />
+                  ))}
                 </tbody>
               </table>
             </div>

@@ -41,7 +41,10 @@ const MainContent = (props) => {
           <UserProfile />
         </Route>
         <Route exact path="/order-history">
-          <BookingHistory />
+          <BookingHistory
+            allRoomData={props.roomData}
+            allHotelData={props.hotelData}
+          />
         </Route>
         <Route exact path="/my-reviews-history">
           <ReviewHistory />

@@ -4,7 +4,7 @@ import Rate from "../Rate/Rate";
 import Room from "./Room/Room";
 import "./Rating.css";
 
-import UserRating from "./UserRating.js/UserRating";
+import UserRating from "./UserRating/UserRating";
 import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
 const HotelDetails = (props) => {
