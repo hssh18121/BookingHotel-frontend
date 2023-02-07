@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import Rate from "../Rate/Rate";
 import Room from "./Room/Room";
 import "./Rating.css";
-
+import "./HotelDetails.css";
 import UserRating from "./UserRating/UserRating";
+import SectionPicture from "./HotelDetailsComponents/SectionPicture";
 import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
 const HotelDetails = (props) => {
@@ -298,33 +299,8 @@ const HotelDetails = (props) => {
         </div>
       </section>
 
-      <section className="section-pictures">
-        <div className="picture-box">
-          <img
-            className="picture-box__img picture-box__img--1"
-            src={require("../../img/tours/tour-5-1.jpg")}
-            alt="The Park Camper Tour 1"
-          />
-        </div>
-        <div className="picture-box">
-          <img
-            className="picture-box__img picture-box__img--2"
-            src={require("../../img/tours/tour-5-2.jpg")}
-            alt="The Park Camper Tour 1"
-          />
-        </div>
-        <div className="picture-box">
-          <img
-            className="picture-box__img picture-box__img--3"
-            src={require("../../img/tours/tour-5-3.jpg")}
-            alt="The Park Camper Tour 1"
-          />
-        </div>
-      </section>
-
-      <section className="section-map">
-        <div id="map"></div>
-      </section>
+      <SectionPicture hotelDetailData={hotelDetailData} />
+      <p className="view-image-library-link">View Image Library</p>
 
       <section className="section-reviews">
         <div className="reviews">

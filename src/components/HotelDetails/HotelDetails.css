@@ -1,0 +1,11 @@
+.view-image-library-link {
+  margin-top: -10rem;
+  text-align: right;
+  font-size: 1.6rem;
+  cursor: pointer;
+  margin-bottom: 30rem;
+}
+
+.view-image-library-link:hover {
+  text-decoration: underline;
+}
