@@ -1,5 +1,7 @@
 import { Fragment, useState } from "react";
 import "./Room.css";
+import { BsPeopleFill } from "react-icons/bs";
+import RoomDetailModal from "./RoomDetailModal/RoomDetailModal";
 const Room = (props) => {
   const [roomOrderQuantity, setRoomOrderQuantity] = useState(0);
 
@@ -21,22 +23,54 @@ const Room = (props) => {
       props.onGetOrderedRoomQuantity(roomOrderQuantity - 1, props.id);
     }
   };
+
+  const [openModal, setOpenModal] = useState(false);
+  const openModalHandler = () => {
+    setOpenModal(true);
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
+  };
+
   return (
     <Fragment>
+      {openModal && (
+        <RoomDetailModal
+          onClose={closeModalHandler}
+          roomInfo={props.roomData}
+        />
+      )}
       <tr>
         <th>
           <img
-            src={require("../../../img/double-room.jpg")}
+            src={
+              props.roomData.image
+                ? props.roomData.image
+                : require("../../../img/double-room.jpg")
+            }
             className="room-overview-image"
             alt="room preview"
           />
         </th>
-        <th>{props.name}</th>
-        <td className="description-table-data">
-          {`${props.description.substring(0, 100)}...`}
+        <th>{props.roomData.name}</th>
+        {/* <td className="description-table-data">
+          {`${props.roomData.description.substring(0, 100)}...`}
+          <div className="see-room-detail-span">
+            <i>see detail</i>
+          </div>
+        </td> */}
+        <td>
+          <div className="people-number-display-container">
+            <div className="people-number">
+              {props.roomData.peopleAmount.adults +
+                props.roomData.peopleAmount.child}{" "}
+            </div>
+            <BsPeopleFill className="bs-people-fill" />
+          </div>
         </td>
-        <td>4 người</td>
-        <td>1000000</td>
+        <td className="price-table-td">{props.roomData.price} vnd</td>
+
         <td>
           <div className="input-field-display-flex">
             <button
@@ -59,6 +93,11 @@ const Room = (props) => {
             >
               +
             </button>
+          </div>
+        </td>
+        <td>
+          <div className="see-room-detail-span" onClick={openModalHandler}>
+            View detail...
           </div>
         </td>
       </tr>

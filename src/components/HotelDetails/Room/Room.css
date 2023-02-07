@@ -26,3 +26,28 @@ input[type="number"] {
   width: 30px;
   cursor: pointer;
 }
+
+.see-room-detail-span {
+  width: 40px;
+  color: #343a40;
+  cursor: pointer;
+}
+
+.see-room-detail-span:hover {
+  text-decoration: underline;
+}
+
+.bs-people-fill {
+  font-size: 2.4rem;
+}
+
+.people-number {
+  font-size: 2rem;
+  margin-top: 2px;
+  font-weight: 500;
+}
+.people-number-display-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

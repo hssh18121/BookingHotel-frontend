@@ -14,7 +14,11 @@ const BookingDetailModal = (props) => {
           &times;
         </button>
         <img
-          src={require("../../../img/double-room.jpg")}
+          src={
+            props.roomInfo.roomData.image
+              ? props.roomInfo.roomData.image
+              : require("../../../img/double-room.jpg")
+          }
           alt="room-img"
           className="room-preview"
         />
@@ -33,6 +37,7 @@ const BookingDetailModal = (props) => {
           <p className="order-detail-paragraph">
             <strong>Status:</strong> {props.roomInfo.status}
           </p>
+
           <hr />
         </div>
         <div className="order-detail-container">

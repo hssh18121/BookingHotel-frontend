@@ -558,21 +558,17 @@ const HotelDetails = (props) => {
               <tr>
                 <th></th>
                 <th>Type</th>
-                <th>Description</th>
+                {/* <th>Description</th> */}
                 <th>Suitable for</th>
                 <th>Price</th>
                 <th>Order</th>
+                <th>Detail</th>
               </tr>
             </thead>
 
             <tbody>
               {hotelRoomData.map((element) => (
-                <Room
-                  name={element.name}
-                  description={element.description}
-                  id={element._id}
-                  onGetOrderedRoomQuantity={getOrderedRoomQuantity}
-                />
+                <Room roomData={element} />
               ))}
             </tbody>
           </table>
