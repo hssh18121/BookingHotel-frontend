@@ -300,7 +300,6 @@ const HotelDetails = (props) => {
       </section>
 
       <SectionPicture hotelDetailData={hotelDetailData} />
-      <p className="view-image-library-link">View Image Library</p>
 
       <section className="section-reviews">
         <div className="reviews">
