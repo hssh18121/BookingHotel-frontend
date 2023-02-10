@@ -43,7 +43,7 @@ const PictureLibraryModal = (props) => {
           src={
             props.images[imageOrder]
               ? props.images[imageOrder]
-              : require("../../../../img/double-room.jpg")
+              : require("../../../img/double-room.jpg")
           }
           alt="room-img"
           className="image-library-preview"

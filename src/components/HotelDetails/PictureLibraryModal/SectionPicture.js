@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import PictureLibraryModal from "./PictureLibraryModal/PictureLibraryModal";
+import PictureLibraryModal from "./PictureLibraryModal";
 const SectionPicture = (props) => {
   const [openModal, setOpenModal] = useState([false, 0]);
 

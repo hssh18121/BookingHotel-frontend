@@ -737,7 +737,7 @@ body {
     to(#555)
   );
   background: linear-gradient(to right bottom, #777, #555);
-  z-index: 10;
+  z-index: 4;
   -webkit-transform: translate(-35%, -50%);
   transform: translate(-35%, -50%);
 }
@@ -747,12 +747,12 @@ body {
 .cta__img--1 {
   -webkit-transform: translate(-10%, -50%) scale(0.97);
   transform: translate(-10%, -50%) scale(0.97);
-  z-index: 9;
+  z-index: 3;
 }
 .cta__img--2 {
   -webkit-transform: translate(15%, -50%) scale(0.94);
   transform: translate(15%, -50%) scale(0.94);
-  z-index: 8;
+  z-index: 2;
 }
 .cta__content {
   display: grid;
