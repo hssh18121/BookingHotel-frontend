@@ -1,7 +1,7 @@
 import React from "react";
-import Main from "../Main/Main";
+import Main from "../../pages/Main/Main";
 import { Link } from "react-router-dom";
-import FeaturedCard from "../FeaturedCard/FeaturedCard";
+import FeaturedCard from "../../components/FeaturedCard/FeaturedCard";
 const Home = (props) => {
   return (
     <React.Fragment>

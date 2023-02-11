@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Rate from "../Rate/Rate";
-import Room from "./Room/Room";
-import "./Rating.css";
+import Room from "../Room/Room";
+import "../UserRating/Rating.css";
 import "./HotelDetails.css";
-import UserRating from "./UserRating/UserRating";
-import SectionPicture from "./PictureLibraryModal/SectionPicture";
+import UserRating from "../UserRating/UserRating";
+import SectionPicture from "../PictureLibraryModal/SectionPicture";
 import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
-import HotelFeatures from "./HotelFeatures/HotelFeatures";
-import SectionCta from "./SectionCta/SectionCta";
+import HotelFeatures from "../HotelFeatures/HotelFeatures";
+import SectionCta from "../SectionCta/SectionCta";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);

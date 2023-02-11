@@ -1,25 +1,21 @@
 import React from "react";
 import "../../App.css";
-import Header from "../Header/Header";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
-import LoginForm from "../LoginForm/LoginForm";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import Header from "../../layouts/Header/Header";
+import Main from "../../pages/Main/Main";
+import Footer from "../../layouts/Footer/Footer";
+import LoginForm from "../../pages/LoginForm/LoginForm";
+import RegisterForm from "../../pages/RegisterForm/RegisterForm";
 import { Route, Switch, HashRouter } from "react-router-dom";
 import HotelDetails from "../HotelDetails/HotelDetails";
 import UserProfile from "../UserProfile/UserProfile";
-import Home from "../Home/Home";
-import BookingHistory from "../UserProfile/BookingHistory";
-import { ToastContainer, toast } from "react-toastify";
+import Home from "../../pages/Home/Home";
+import BookingHistory from "../UserActivityHistory/BookingHistory";
 import "react-toastify/dist/ReactToastify.css";
-import ReviewHistory from "../UserProfile/ReviewHistory";
+import ReviewHistory from "../UserActivityHistory/ReviewHistory";
 const MainContent = (props) => {
   return (
     <HashRouter>
-      <Header
-        hotelData={props.hotelData}
-        // getFilteredHotelData={getFilteredHotelData}
-      />
+      <Header hotelData={props.hotelData} />
 
       <Switch>
         <Route exact path="/">
@@ -50,7 +46,6 @@ const MainContent = (props) => {
           <ReviewHistory />
         </Route>
       </Switch>
-      {/* {openLoginForm ? <LoginForm /> : <Main hotelData={props.hotelData} />} */}
       <Footer />
     </HashRouter>
   );

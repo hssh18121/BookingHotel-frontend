@@ -14,7 +14,7 @@ const UserRating = (props) => {
               src={
                 props.ratingData.user.avatar
                   ? props.ratingData.user.avatar
-                  : require("../../../img/users/default.jpg")
+                  : require("../../img/users/default.jpg")
               }
               alt="User "
               className="nav__user-img"

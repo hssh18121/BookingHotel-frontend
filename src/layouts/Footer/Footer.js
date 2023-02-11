@@ -1,5 +1,4 @@
 import React from "react";
-// import "./footer.css";
 const Footer = () => {
   return (
     <React.Fragment>
@@ -28,7 +27,7 @@ const Footer = () => {
           </li>
         </ul>
         <p className="footer__copyright">
-          &copy; by Jonas Schmedtmann. All rights reserved.
+          &copy; by Son nh. All rights reserved.
         </p>
       </div>
     </React.Fragment>

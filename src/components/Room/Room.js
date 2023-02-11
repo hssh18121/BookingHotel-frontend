@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import "./Room.css";
 import { BsPeopleFill } from "react-icons/bs";
-import RoomDetailModal from "./RoomDetailModal/RoomDetailModal";
+import RoomDetailModal from "../RoomDetailModal/RoomDetailModal";
 const Room = (props) => {
   const [roomOrderQuantity, setRoomOrderQuantity] = useState(0);
 
@@ -47,7 +47,7 @@ const Room = (props) => {
             src={
               props.roomData.image
                 ? props.roomData.image
-                : require("../../../img/double-room.jpg")
+                : require("../../img/double-room.jpg")
             }
             className="room-overview-image"
             alt="room preview"

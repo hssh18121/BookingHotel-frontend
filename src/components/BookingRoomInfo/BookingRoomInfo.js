@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../BookingHistory.css";
+import "../UserActivityHistory/BookingHistory.css";
 import BookingDetailModal from "./BookingDetailModal";
 const BookingRoomInfo = (props) => {
   const [openModal, setOpenModal] = useState(false);

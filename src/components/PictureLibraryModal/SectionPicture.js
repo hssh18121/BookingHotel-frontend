@@ -29,7 +29,7 @@ const SectionPicture = (props) => {
             src={
               props.hotelDetailData.imageLibrary[0]
                 ? props.hotelDetailData.imageLibrary[0]
-                : require("../../../img/tours/tour-5-1.jpg")
+                : require("../../img/tours/tour-5-1.jpg")
             }
             alt="The Park Camper Tour 1"
           />
@@ -41,7 +41,7 @@ const SectionPicture = (props) => {
             src={
               props.hotelDetailData.imageLibrary[1]
                 ? props.hotelDetailData.imageLibrary[1]
-                : require("../../../img/tours/tour-5-2.jpg")
+                : require("../../img/tours/tour-5-2.jpg")
             }
             alt="The Park Camper Tour 1"
           />
@@ -53,7 +53,7 @@ const SectionPicture = (props) => {
             src={
               props.hotelDetailData.imageLibrary[2]
                 ? props.hotelDetailData.imageLibrary[2]
-                : require("../../../img/tours/tour-5-3.jpg")
+                : require("../../img/tours/tour-5-3.jpg")
             }
             alt="The Park Camper Tour 1"
           />

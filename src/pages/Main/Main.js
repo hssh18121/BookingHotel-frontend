@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FeaturedCard from "../FeaturedCard/FeaturedCard";
+import FeaturedCard from "../../components/FeaturedCard/FeaturedCard";
 
 import "./Main.css";
 const Main = (props) => {

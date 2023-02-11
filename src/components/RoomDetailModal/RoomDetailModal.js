@@ -16,7 +16,7 @@ const RoomDetailModal = (props) => {
           src={
             props.roomInfo.image
               ? props.roomInfo.image
-              : require("../../../../img/double-room.jpg")
+              : require("../../img/double-room.jpg")
           }
           alt="room-img"
           className="room-preview"

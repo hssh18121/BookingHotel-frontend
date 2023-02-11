@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./BookingHistory.css";
-import BookingRoomInfo from "./BookingRoomInfo/BookingRoomInfo";
+import BookingRoomInfo from "../BookingRoomInfo/BookingRoomInfo";
 const BookingHistory = (props) => {
   const [bookingsList, setBookingsList] = useState([{}]);
   const showErrorMessage = (message) => {

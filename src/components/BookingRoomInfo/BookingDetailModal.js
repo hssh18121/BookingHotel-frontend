@@ -17,7 +17,7 @@ const BookingDetailModal = (props) => {
           src={
             props.roomInfo.roomData.image
               ? props.roomInfo.roomData.image
-              : require("../../../img/double-room.jpg")
+              : require("../../img/double-room.jpg")
           }
           alt="room-img"
           className="room-preview"

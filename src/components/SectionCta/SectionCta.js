@@ -7,18 +7,18 @@ const SectionCta = () => {
         <div className="cta">
           <div className="cta__img cta__img--logo">
             <img
-              src={require("../../../img/logo-white.png")}
+              src={require("../../img/logo-white.png")}
               alt="Natours logo"
               className=""
             />
           </div>
           <img
-            src={require("../../../img/tours/tour-5-2.jpg")}
+            src={require("../../img/tours/tour-5-2.jpg")}
             alt=""
             className="cta__img cta__img--1"
           />
           <img
-            src={require("../../../img/tours/tour-5-1.jpg")}
+            src={require("../../img/tours/tour-5-1.jpg")}
             alt=""
             className="cta__img cta__img--2"
           />
