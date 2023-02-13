@@ -303,7 +303,7 @@ const HotelDetails = (props) => {
 
       <SectionPicture hotelDetailData={hotelDetailData} />
 
-      <HotelFeatures hotelFeatures={hotelDetailData.hotelFeatures} />
+      <HotelFeatures hotelDetailData={hotelDetailData} />
       <SectionCta />
 
       <section className="section-cta flex-justify-center">

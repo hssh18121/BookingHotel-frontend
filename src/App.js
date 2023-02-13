@@ -18,7 +18,6 @@ function App() {
       .then((data) => {
         setBackendRoomData(data);
       });
-    
   }, []);
 
   return (
