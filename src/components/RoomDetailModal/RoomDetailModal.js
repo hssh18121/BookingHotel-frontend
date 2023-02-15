@@ -1,9 +1,86 @@
 import React from "react";
-import { FaBed, FaCheck, FaRegImage } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
+import { useState } from "react";
 import "./RoomDetailModal.css";
+import { toast } from "react-toastify";
 const RoomDetailModal = (props) => {
+  const [checkinDate, setCheckinDate] = useState();
+  const [checkoutDate, setCheckoutDate] = useState();
+
+  const showSuccessMessage = (message) => {
+    toast.success(`${message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const showErrorMessage = (message) => {
+    toast.error(`${message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const closeModalHandler = () => {
+    console.log(props.roomInfo);
     props.onClose();
+  };
+  const checkinDateHandler = (e) => {
+    setCheckinDate(e.target.value);
+  };
+
+  const checkoutDateHandler = (e) => {
+    setCheckoutDate(e.target.value);
+  };
+
+  const bookRoomHandler = (e) => {
+    e.preventDefault();
+    const checkIn = checkinDate;
+    const checkOut = checkoutDate;
+    if (!localStorage.getItem("token")) {
+      showErrorMessage("You need to login to perform this action!");
+    }
+
+    fetch(`http://localhost:5000/api/booking/${props.roomInfo._id}`, {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+
+      body: JSON.stringify({
+        checkIn,
+        checkOut,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          showSuccessMessage("Booking successfully");
+          console.log(data.data);
+          window.setTimeout(function () {
+            window.location.href = "/booking-history";
+          }, 2000);
+        } else {
+          console.log(data.message);
+          showErrorMessage("An error occured! Booking failed");
+        }
+      });
   };
 
   return (
@@ -12,6 +89,7 @@ const RoomDetailModal = (props) => {
         <button className="close-modal" onClick={closeModalHandler}>
           &times;
         </button>
+
         <img
           src={
             props.roomInfo.image
@@ -66,13 +144,40 @@ const RoomDetailModal = (props) => {
             </p>
           </div>
         </div>
+        <div
+          className="checkin-checkout-container"
+          id="modal--checkin-checkout-container"
+        >
+          <div className="checkin-checkout-wrapper">
+            <label for="checkin">Checkin: </label>
+            <input
+              type="date"
+              id="checkin"
+              name="checkin"
+              className="checkin-out-input"
+              value={checkinDate}
+              onChange={checkinDateHandler}
+            />
+          </div>
+          <div className="checkin-checkout-wrapper">
+            <label for="checkout">Checkout: </label>
+            <input
+              type="date"
+              id="checkout"
+              name="checkout"
+              className="checkin-out-input"
+              value={checkoutDate}
+              onChange={checkoutDateHandler}
+            />
+          </div>
+        </div>
         <div className="order-room-button-container">
           <button
             className="btn btn--green span-all-rows"
             id="order-room-button"
-            onClick={closeModalHandler}
+            onClick={bookRoomHandler}
           >
-            Close modal
+            Book now!
           </button>
         </div>
       </div>
