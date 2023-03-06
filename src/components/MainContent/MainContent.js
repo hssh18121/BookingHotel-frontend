@@ -12,6 +12,7 @@ import Home from "../../pages/Home/Home";
 import BookingHistory from "../UserActivityHistory/BookingHistory";
 import "react-toastify/dist/ReactToastify.css";
 import ReviewHistory from "../UserActivityHistory/ReviewHistory";
+import CheckoutPage from "../../pages/CheckoutPage/CheckoutPage";
 const MainContent = (props) => {
   return (
     <HashRouter>
@@ -44,6 +45,9 @@ const MainContent = (props) => {
         </Route>
         <Route exact path="/my-reviews-history">
           <ReviewHistory />
+        </Route>
+        <Route exact path="/checkout-form">
+          <CheckoutPage />
         </Route>
       </Switch>
       <Footer />

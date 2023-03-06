@@ -3,9 +3,12 @@ import { FaCheck } from "react-icons/fa";
 import { useState } from "react";
 import "./RoomDetailModal.css";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import CheckoutPage from "../../pages/CheckoutPage/CheckoutPage";
 const RoomDetailModal = (props) => {
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
+  const [nextStep, setNextStep] = useState(false);
 
   const showSuccessMessage = (message) => {
     toast.success(`${message}`, {
@@ -47,44 +50,20 @@ const RoomDetailModal = (props) => {
 
   const bookRoomHandler = (e) => {
     e.preventDefault();
-    const checkIn = checkinDate;
-    const checkOut = checkoutDate;
-    if (!localStorage.getItem("token")) {
-      showErrorMessage("You need to login to perform this action!");
-    }
 
-    fetch(`http://localhost:5000/api/booking/${props.roomInfo._id}`, {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-
-      body: JSON.stringify({
-        checkIn,
-        checkOut,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") {
-          showSuccessMessage("Booking successfully");
-          console.log(data.data);
-          window.setTimeout(function () {
-            window.location.href = "/booking-history";
-          }, 2000);
-        } else {
-          console.log(data.message);
-          showErrorMessage("An error occured! Booking failed");
-        }
-      });
+    setNextStep(true);
   };
 
   return (
     <React.Fragment>
+      {nextStep && (
+        <CheckoutPage
+          checkinDate={checkinDate}
+          checkoutDate={checkoutDate}
+          roomInfo={props.roomInfo}
+          onClose={props.onClose}
+        />
+      )}
       <div className="modal">
         <button className="close-modal" onClick={closeModalHandler}>
           &times;

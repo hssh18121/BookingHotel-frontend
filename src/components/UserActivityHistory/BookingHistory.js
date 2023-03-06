@@ -120,9 +120,12 @@ const BookingHistory = (props) => {
                 </thead>
 
                 <tbody>
-                  {formattedBookingsList?.map((element) => (
-                    <BookingRoomInfo roomInfo={element} />
-                  ))}
+                  {formattedBookingsList
+                    ?.slice(0)
+                    .reverse()
+                    .map((element) => (
+                      <BookingRoomInfo roomInfo={element} />
+                    ))}
                 </tbody>
               </table>
             </div>
