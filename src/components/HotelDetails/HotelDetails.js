@@ -33,7 +33,7 @@ const HotelDetails = (props) => {
 
   const [hotelRating, setHotelRating] = useState([{}]);
   useEffect(() => {
-    fetch(`api/rating/${hotelDetailData._id}`)
+    fetch(`/api/rating/${hotelDetailData._id}`)
       .then((response) => response.json())
       .then((data) => {
         setHotelRating(data);
