@@ -5,6 +5,7 @@ import "./RoomDetailModal.css";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import CheckoutPage from "../../pages/CheckoutPage/CheckoutPage";
+import DatePicker from "../Datepicker";
 const RoomDetailModal = (props) => {
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
@@ -127,28 +128,22 @@ const RoomDetailModal = (props) => {
           className="checkin-checkout-container"
           id="modal--checkin-checkout-container"
         >
-          <div className="checkin-checkout-wrapper">
-            <label for="checkin">Checkin: </label>
-            <input
-              type="date"
-              id="checkin"
-              name="checkin"
-              className="checkin-out-input"
-              value={checkinDate}
-              onChange={checkinDateHandler}
-            />
-          </div>
-          <div className="checkin-checkout-wrapper">
-            <label for="checkout">Checkout: </label>
-            <input
-              type="date"
-              id="checkout"
-              name="checkout"
-              className="checkin-out-input"
-              value={checkoutDate}
-              onChange={checkoutDateHandler}
-            />
-          </div>
+          <DatePicker
+            id="checkin"
+            label="Checkin: "
+            name="checkin"
+            className="checkin-out-input"
+            date={checkinDate}
+            onChange={checkinDateHandler}
+          />
+          <DatePicker
+            id="checkout"
+            label="Checkout: "
+            name="checkout"
+            className="checkin-out-input"
+            date={checkoutDate}
+            onChange={checkoutDateHandler}
+          />
         </div>
         <div className="order-room-button-container">
           <button

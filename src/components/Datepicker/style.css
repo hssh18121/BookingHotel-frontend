@@ -1,0 +1,19 @@
+.checkin-checkout-wrapper {
+    /* background-color: aqua; */
+}
+
+.checkin-checkout-wrapper input[type="date"] {
+    color: rgb(119, 119, 119);
+    margin: .2em;
+    padding: 0.2em;
+    font-family: Lato, sans-serif;
+    border-radius: 5px;
+    border-color: transparent;
+    outline-color: transparent;
+    box-shadow: 1px 1px 5px 0px rgba(117, 117, 117, 0.75);
+    transition: all 0.2s ease-in-out;
+}
+
+.checkin-checkout-wrapper input[type="date"]:hover {
+    box-shadow: 1px 1px 7px 1px rgba(166, 197, 202, 0.75);
+}

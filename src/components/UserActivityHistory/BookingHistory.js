@@ -99,7 +99,7 @@ const BookingHistory = (props) => {
                     <th>Hotel</th>
                     <th id="booking-history-table-roomName">Room info</th>
                     <th>Status</th>
-                    <th>View detail</th>
+                    <th>Detail</th>
                   </tr>
                 </thead>
 

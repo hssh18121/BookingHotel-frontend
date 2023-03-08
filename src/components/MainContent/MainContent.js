@@ -5,7 +5,7 @@ import Main from "../../pages/Main/Main";
 import Footer from "../../layouts/Footer/Footer";
 import LoginForm from "../../pages/LoginForm/LoginForm";
 import RegisterForm from "../../pages/RegisterForm/RegisterForm";
-import { Route, Switch, HashRouter } from "react-router-dom";
+import { Route, Switch, HashRouter, BrowserRouter } from "react-router-dom";
 import HotelDetails from "../HotelDetails/HotelDetails";
 import UserProfile from "../UserProfile/UserProfile";
 import Home from "../../pages/Home/Home";
@@ -16,7 +16,7 @@ import CheckoutPage from "../../pages/CheckoutPage/CheckoutPage";
 import CheckoutSuccess from "../../pages/CheckoutSuccess/CheckoutSuccess";
 const MainContent = (props) => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Header hotelData={props.hotelData} />
 
       <Switch>
@@ -54,7 +54,7 @@ const MainContent = (props) => {
           <CheckoutSuccess />
         </Route>
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 export default MainContent;

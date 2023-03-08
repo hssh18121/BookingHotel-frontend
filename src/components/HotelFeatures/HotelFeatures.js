@@ -12,7 +12,19 @@ const HotelFeatures = (props) => {
         setFeatureData(data);
       });
   }, []);
-
+  let reviews;
+  useEffect(() => {
+    reviews = document.querySelector(".reviews");
+    let x = 0;
+    setInterval(() => {
+      if (x > reviews.scrollWidth - window.innerWidth) {
+        x = 0;
+      }
+      console.log(x);
+      reviews.scrollTo(x, 0);
+      x += 100;
+    }, 1000);
+  }, []);
   return (
     <React.Fragment>
       <section className="section-reviews">

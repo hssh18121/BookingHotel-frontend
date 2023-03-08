@@ -15,7 +15,6 @@ import {
 const htmlContainer = (component, description) => {
   return (
     <React.Fragment>
-      ({" "}
       <div className="reviews__card hotel-feature-text">
         <div className="reviews__avatar">Hotel Features</div>
         <div className="reviews__avatar" id="hotel-feature-icon">
@@ -23,7 +22,6 @@ const htmlContainer = (component, description) => {
         </div>
         <p className="hotel-feature-description">{description}</p>
       </div>
-      )
     </React.Fragment>
   );
 };

@@ -11,6 +11,7 @@ import { Fade } from "react-awesome-reveal";
 import HotelFeatures from "../HotelFeatures/HotelFeatures";
 import SectionCta from "../SectionCta/SectionCta";
 import { FaStar } from "react-icons/fa";
+import DatePicker from "../Datepicker";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -319,7 +320,7 @@ const HotelDetails = (props) => {
       <SectionCta />
 
       <section className="section-cta flex-justify-center">
-        <form>
+        <form id="room-list">
           <div className="checkin-checkout-container">
             <div className="checkin-checkout-wrapper">
               <label for="checkin">Checkin: </label>
@@ -343,6 +344,7 @@ const HotelDetails = (props) => {
                 onChange={checkoutDateHandler}
               />
             </div>
+            {/* <DatePicker date={checkinDate} onChange={checkinDateHandler} /> */}
           </div>
 
           <table>

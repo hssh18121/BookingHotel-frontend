@@ -5,7 +5,7 @@ function App() {
   const [backendData, setBackendData] = useState([{}]);
   const [backendRoomData, setBackendRoomData] = useState([{}]);
   useEffect(() => {
-    fetch("api/hotel/all")
+    fetch("/api/hotel/all")
       .then((response) => response.json())
       .then((data) => {
         setBackendData(data);
@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("api/room/all")
+    fetch("/api/room/all")
       .then((response) => response.json())
       .then((data) => {
         setBackendRoomData(data);

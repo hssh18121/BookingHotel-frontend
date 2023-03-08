@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const SectionCta = () => {
   return (
     <React.Fragment>
@@ -28,9 +28,9 @@ const SectionCta = () => {
             <p className="cta__text">
               Enjoy our hotels! Infinite memories. Make it yours today!
             </p>
-            <button className="btn btn--green span-all-rows">
-              Book room now!
-            </button>
+            <a className="btn btn--green span-all-rows" href="#room-list">
+              Book now!
+            </a>
           </div>
         </div>
       </section>

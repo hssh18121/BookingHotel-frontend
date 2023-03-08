@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import "./Room.css";
-import { BsPeopleFill } from "react-icons/bs";
+import { BsPeopleFill, BsFillEyeFill } from "react-icons/bs";
 import RoomDetailModal from "../RoomDetailModal/RoomDetailModal";
 const Room = (props) => {
   const [roomOrderQuantity, setRoomOrderQuantity] = useState(0);
@@ -97,7 +97,7 @@ const Room = (props) => {
         </td>
         <td>
           <div className="see-room-detail-span" onClick={openModalHandler}>
-            View detail...
+            <BsFillEyeFill className="bs-eye-fill" />
           </div>
         </td>
       </tr>
