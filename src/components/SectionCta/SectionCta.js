@@ -26,7 +26,7 @@ const SectionCta = () => {
           <div className="cta__content">
             <h2 className="heading-secondary">What are you waiting for?</h2>
             <p className="cta__text">
-              10 days. 1 adventure. Infinite memories. Make it yours today!
+              Enjoy our hotels! Infinite memories. Make it yours today!
             </p>
             <button className="btn btn--green span-all-rows">
               Book room now!

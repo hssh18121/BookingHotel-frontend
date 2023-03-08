@@ -13,6 +13,7 @@ import BookingHistory from "../UserActivityHistory/BookingHistory";
 import "react-toastify/dist/ReactToastify.css";
 import ReviewHistory from "../UserActivityHistory/ReviewHistory";
 import CheckoutPage from "../../pages/CheckoutPage/CheckoutPage";
+import CheckoutSuccess from "../../pages/CheckoutSuccess/CheckoutSuccess";
 const MainContent = (props) => {
   return (
     <HashRouter>
@@ -49,8 +50,10 @@ const MainContent = (props) => {
         <Route exact path="/checkout-form">
           <CheckoutPage />
         </Route>
+        <Route exact path="/checkout-success">
+          <CheckoutSuccess />
+        </Route>
       </Switch>
-      <Footer />
     </HashRouter>
   );
 };

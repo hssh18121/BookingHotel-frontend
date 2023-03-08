@@ -9,7 +9,6 @@ const HotelFeatures = (props) => {
     fetch(`http://localhost:5000/api/hotelFeature/all`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setFeatureData(data);
       });
   }, []);

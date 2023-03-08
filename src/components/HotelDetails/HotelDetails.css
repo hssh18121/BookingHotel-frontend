@@ -9,3 +9,8 @@
 .view-image-library-link:hover {
   text-decoration: underline;
 }
+
+.fa-star {
+  color: gold;
+  padding-top: 3px;
+}

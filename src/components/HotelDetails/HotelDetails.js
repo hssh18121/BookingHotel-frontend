@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
 import HotelFeatures from "../HotelFeatures/HotelFeatures";
 import SectionCta from "../SectionCta/SectionCta";
+import { FaStar } from "react-icons/fa";
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,6 +28,7 @@ const HotelDetails = (props) => {
   const [comment, setComment] = useState("");
   const testOrderedRoom = [];
   const [orderedRoom, setOrderedRoom] = useState(testOrderedRoom);
+  const [avgRating, setAvgRating] = useState("");
 
   const [hotelRating, setHotelRating] = useState([{}]);
   useEffect(() => {
@@ -34,6 +36,7 @@ const HotelDetails = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setHotelRating(data);
+        setAvgRating(data.data.starAvg);
         console.log(data);
       });
   }, []);
@@ -235,33 +238,42 @@ const HotelDetails = (props) => {
         <div className="overview-box">
           <div>
             <div className="overview-box__group">
-              <h2 className="heading-secondary ma-bt-lg">Thông tin chung:</h2>
+              <h2 className="heading-secondary ma-bt-lg">Genral Info:</h2>
               <div className="overview-box__detail">
                 <svg className="overview-box__icon">
                   {/* <use xlink:href="img/icons.svg#icon-calendar"></use> */}
                 </svg>
-                <span className="overview-box__label">Phòng trống:</span>
-                <span className="overview-box__text">Có phòng</span>
+                <span className="overview-box__label">Name</span>
+                <span className="overview-box__text">
+                  {hotelDetailData.name}
+                </span>
               </div>
 
               <div className="overview-box__detail">
                 <svg className="overview-box__icon">
                   {/* <use xlink:href="img/icons.svg#icon-user"></use> */}
                 </svg>
-                <span className="overview-box__label">Sức chứa:</span>
-                <span className="overview-box__text">160 người</span>
+                <span className="overview-box__label">Located at</span>
+                <span className="overview-box__text">
+                  {hotelDetailData.province}
+                </span>
               </div>
               <div className="overview-box__detail">
                 <svg className="overview-box__icon">
                   {/* <use xlink:href="img/icons.svg#icon-star"></use> */}
                 </svg>
                 <span className="overview-box__label">Rating</span>
-                <span className="overview-box__text">4.9 / 5</span>
+                <span className="overview-box__text">
+                  <span> {avgRating}</span>{" "}
+                  <span>
+                    <FaStar className="fa-star" />
+                  </span>
+                </span>
               </div>
             </div>
 
             <div className="overview-box__group">
-              <h2 className="heading-secondary ma-bt-lg">Liên hệ</h2>
+              <h2 className="heading-secondary ma-bt-lg">Contact</h2>
 
               <div className="overview-box__detail">
                 <img
@@ -295,7 +307,7 @@ const HotelDetails = (props) => {
         </div>
 
         <div className="description-box">
-          <h2 className="heading-secondary ma-bt-lg">Mô tả về khách sạn</h2>
+          <h2 className="heading-secondary ma-bt-lg">Hotel Description</h2>
           <p className="description__text">{hotelDetailData.description}</p>
           <p className="description__text"></p>
         </div>

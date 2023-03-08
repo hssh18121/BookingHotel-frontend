@@ -29,7 +29,6 @@ const htmlContainer = (component, description) => {
 };
 const hotelFeaturesHelper = (id, data) => {
   const feature = data.data?.hotelFeatures.find((el) => el._id === id);
-  console.log(feature);
   if (feature?.iconKeyword === "FaSwimmingPool") {
     return (
       <React.Fragment>

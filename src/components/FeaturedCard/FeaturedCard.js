@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   FaLocationArrow,
   FaGlobeAsia,
   FaMoneyBillWave,
   FaHotel,
+  FaStar,
 } from "react-icons/fa";
 const FeaturedCard = (props) => {
+  const [avgRating, setAvgRating] = useState("");
+  useEffect(() => {
+    fetch(`api/rating/${props.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAvgRating(data.data.starAvg);
+        console.log(data);
+      });
+  }, [props.id]);
   return (
     <React.Fragment>
       <div className="card">
@@ -44,13 +54,12 @@ const FeaturedCard = (props) => {
         </div>
 
         <div className="card__footer">
-          <p>
-            <span className="card__footer-value">$1,997</span>
-            <span className="card__footer-text">per person</span>
-          </p>
+          <p></p>
           <p className="card__ratings">
-            <span className="card__footer-value">4.7</span>
-            <span className="card__footer-text">rating (23)</span>
+            <span className="card__footer-value">
+              {avgRating ? avgRating : 5} stars
+            </span>
+            <span className="card__footer-text"> Rating </span>
           </p>
           <Link
             to={`/hotels/details/${props.id}`}

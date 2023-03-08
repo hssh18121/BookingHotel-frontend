@@ -83,22 +83,6 @@ const BookingHistory = (props) => {
                   My bookings
                 </Link>
               </li>
-              <li>
-                <Link to="/my-reviews-history">
-                  <svg>
-                    {/* <use xlink:href="img/icons.svg#icon-star"></use> */}
-                  </svg>
-                  My reviews
-                </Link>
-              </li>
-              <li>
-                <Link to="/my-rating-history">
-                  <svg>
-                    {/* <use xlink:href="img/icons.svg#icon-credit-card"></use> */}
-                  </svg>
-                  Rating
-                </Link>
-              </li>
             </ul>
           </nav>
 

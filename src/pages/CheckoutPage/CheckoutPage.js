@@ -115,7 +115,7 @@ const CheckoutPage = (props) => {
           showSuccessMessage("Booking successfully");
           console.log(data.data);
           window.setTimeout(function () {
-            window.location.href = "/booking-history";
+            window.location.href = "/#/checkout-success";
           }, 2000);
         } else {
           console.log(data.message);
@@ -144,6 +144,12 @@ const CheckoutPage = (props) => {
           <h1 className="checkout-form-title">
             One more step! Fill your contact info
           </h1>
+          <h5 className="room-order-description">
+            <b>Order description: </b>
+            {props.roomInfo.name}, suitable for{" "}
+            {props.roomInfo.peopleAmount.adults} adults and{" "}
+            {props.roomInfo.peopleAmount.child} children
+          </h5>
           <div className="form__group">
             <label className="form__label" for="name">
               Your Fullname

@@ -1,0 +1,39 @@
+.content-container {
+  position: relative;
+  height: 100vh;
+  background-image: linear-gradient(
+    rgba(233, 236, 239, 0.603),
+    rgba(233, 236, 239, 0.603)
+  );
+  background-image: linear-gradient(
+      rgba(34, 34, 34, 0.603),
+      rgba(34, 34, 34, 0.603)
+    ),
+    url(../../img/tours/tour-1-2.jpg);
+  background-size: cover;
+}
+
+.box-content {
+  background: rgb(256, 256, 256, 0.8);
+  position: absolute;
+  box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+  border-radius: 12px;
+  top: 40%;
+  right: 50%;
+  border: 1px solid #ccc;
+  padding: 4rem;
+  transform: translate(50%, -40%);
+  height: 45%;
+}
+
+#checkout-notify-text {
+  color: #444;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.click-dang-ky {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 2rem;
+}
