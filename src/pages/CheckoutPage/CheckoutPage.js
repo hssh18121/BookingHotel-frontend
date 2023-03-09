@@ -115,7 +115,7 @@ const CheckoutPage = (props) => {
           showSuccessMessage("Booking successfully");
           console.log(data.data);
           window.setTimeout(function () {
-            window.location.href = "/#/checkout-success";
+            window.location.href = "/checkout-success";
           }, 2000);
         } else {
           console.log(data.message);
