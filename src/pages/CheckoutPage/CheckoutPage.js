@@ -1,40 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./CheckoutPage.css";
-import { toast } from "react-toastify";
+import { showSuccessMessage, showErrorMessage } from "../../utils/notificationHelper"
 
 const CheckoutPage = (props) => {
-  const showSuccessMessage = (message) => {
-    toast.success(`${message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const showErrorMessage = (message) => {
-    toast.error(`${message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/me`, {
+    fetch(`/api/me`, {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -51,16 +26,7 @@ const CheckoutPage = (props) => {
           setFullname(data.data.user.fullname);
           setPhone(data.data.user.phone);
         } else {
-          toast.error("An error occured! Can not get user data!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("An error occured! Can not get user data!");
         }
       });
   }, []);
@@ -89,7 +55,7 @@ const CheckoutPage = (props) => {
       showErrorMessage("You need to login to perform this action!");
     }
 
-    fetch(`http://localhost:5000/api/booking/${props.roomInfo._id}`, {
+    fetch(`/api/booking/${props.roomInfo._id}`, {
       method: "POST",
       crossDomain: true,
       headers: {

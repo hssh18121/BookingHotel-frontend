@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import "./BookingHistory.css";
 import BookingRoomInfo from "../BookingRoomInfo/BookingRoomInfo";
+import { showErrorMessage } from "../../utils/notificationHelper"
+
 const BookingHistory = (props) => {
   const [bookingsList, setBookingsList] = useState([{}]);
-  const showErrorMessage = (message) => {
-    toast.error(`${message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/me`, {
+    fetch(`/api/me`, {
       method: "GET",
       crossDomain: true,
       headers: {

@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaStar } from "react-icons/fa";
 const Rate = ({ count, rating, color, onRating }) => {
   const [hoverRating, setHoverRating] = useState(0);
@@ -20,15 +19,6 @@ const Rate = ({ count, rating, color, onRating }) => {
       .fill(0)
       .map((_, i) => i + 1)
       .map((idx) => (
-        // <FontAwesomeIcon
-        //   key={idx}
-        //   className="cursor-pointer"
-        //   icon="star"
-        //   onClick={() => onRating(idx)}
-        //   style={{ color: getColor(idx) }}
-        //   onMouseEnter={() => setHoverRating(idx)}
-        //   onMouseLeave={() => setHoverRating(0)}
-        // />
         <FaStar
           key={idx}
           className="cursor-pointer"

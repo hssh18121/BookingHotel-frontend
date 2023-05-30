@@ -54,12 +54,6 @@ const Room = (props) => {
           />
         </th>
         <th>{props.roomData.name}</th>
-        {/* <td className="description-table-data">
-          {`${props.roomData.description.substring(0, 100)}...`}
-          <div className="see-room-detail-span">
-            <i>see detail</i>
-          </div>
-        </td> */}
         <td>
           <div className="people-number-display-container">
             <div className="people-number">

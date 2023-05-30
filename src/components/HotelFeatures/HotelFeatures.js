@@ -6,7 +6,7 @@ const HotelFeatures = (props) => {
   const data = props.hotelDetailData.hotelFeatures;
   const [featureData, setFeatureData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/api/hotelFeature/all`)
+    fetch(`/api/hotelFeature/all`)
       .then((response) => response.json())
       .then((data) => {
         setFeatureData(data);

@@ -5,7 +5,7 @@ import "./BookingHistory.css";
 const ReviewHistory = () => {
   useEffect(() => {
     fetch(
-      `http://localhost:5000/api/booking/${localStorage.getItem("userID")}`,
+      `/api/booking/${localStorage.getItem("userID")}`,
       {
         method: "GET",
         crossDomain: true,

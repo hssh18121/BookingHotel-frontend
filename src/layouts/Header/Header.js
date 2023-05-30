@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
-import { toast } from "react-toastify";
 import "./Header.css";
-import "react-toastify/dist/ReactToastify.css";
-const Header = (props) => {
+import { showSuccessMessage, showErrorMessage } from "../../utils/notificationHelper"
+
+const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userAvatar, setUserAvatar] = useState("");
 
@@ -13,21 +13,11 @@ const Header = (props) => {
 
     if (storedUserLoggedInInformation) {
       setIsLoggedIn(true);
-      // toast.success("Login under user role!", {
-      //   position: "top-right",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      // });
     }
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/me`, {
+    fetch(`/api/me`, {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -42,16 +32,7 @@ const Header = (props) => {
         if (data.status === "success") {
           setUserAvatar(data.data.user.avatar);
         } else {
-          toast.error("An error occured! Can not get user data!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("An error occured! Can not get user data!");
         }
       });
   }, []);
@@ -61,16 +42,7 @@ const Header = (props) => {
     localStorage.removeItem("username");
     localStorage.removeItem("userID");
     setIsLoggedIn(false);
-    toast.success("Logout successfully!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    showSuccessMessage("Logout successfully!");
   };
   return (
     <React.Fragment>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 import "./RegisterForm.css";
+import { showSuccessMessage, showErrorMessage } from "../../utils/notificationHelper"
+
 const RegisterForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredUsername, setEnteredUsername] = useState("");
@@ -38,7 +39,7 @@ const RegisterForm = () => {
     let confirmPassword = enteredPasswordConfirm;
     console.log(username, password, email, fullname, phone);
 
-    fetch("http://localhost:5000/api/auth/signup", {
+    fetch("/api/auth/signup", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -58,31 +59,14 @@ const RegisterForm = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          toast.success("Register successfully!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showSuccessMessage("Register successfully!");
+         
           window.setTimeout(function () {
             // Move to a new location or you can do something else
             window.location.href = "./login";
           }, 2000);
         } else {
-          toast.error("Error! Register failed", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("Error! Register failed");
         }
       });
   };

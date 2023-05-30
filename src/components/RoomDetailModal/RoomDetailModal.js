@@ -2,40 +2,14 @@ import React from "react";
 import { FaCheck } from "react-icons/fa";
 import { useState } from "react";
 import "./RoomDetailModal.css";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import CheckoutPage from "../../pages/CheckoutPage/CheckoutPage";
 import DatePicker from "../Datepicker";
+
 const RoomDetailModal = (props) => {
   const [checkinDate, setCheckinDate] = useState();
   const [checkoutDate, setCheckoutDate] = useState();
   const [nextStep, setNextStep] = useState(false);
 
-  const showSuccessMessage = (message) => {
-    toast.success(`${message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const showErrorMessage = (message) => {
-    toast.error(`${message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
   const closeModalHandler = () => {
     console.log(props.roomInfo);

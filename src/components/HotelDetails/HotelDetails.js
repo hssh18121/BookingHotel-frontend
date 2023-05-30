@@ -6,12 +6,13 @@ import "../UserRating/Rating.css";
 import "./HotelDetails.css";
 import UserRating from "../UserRating/UserRating";
 import SectionPicture from "../PictureLibraryModal/SectionPicture";
-import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
 import HotelFeatures from "../HotelFeatures/HotelFeatures";
 import SectionCta from "../SectionCta/SectionCta";
 import { FaStar } from "react-icons/fa";
 import DatePicker from "../Datepicker";
+import { showSuccessMessage, showErrorMessage } from "../../utils/notificationHelper"
+
 const HotelDetails = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,31 +43,7 @@ const HotelDetails = (props) => {
       });
   }, []);
 
-  const showSuccessMessage = (message) => {
-    toast.success(`${message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const showErrorMessage = (message) => {
-    toast.error(`${message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
+ 
 
   const checkinDateHandler = (e) => {
     setCheckinDate(e.target.value);
@@ -106,7 +83,7 @@ const HotelDetails = (props) => {
       anOrder.room = anOrder._id;
       return anOrder;
     });
-    fetch("http://localhost:5000/api/booking", {
+    fetch("/api/booking", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -124,12 +101,10 @@ const HotelDetails = (props) => {
       .then((data) => {
         if (data.status === "success") {
           showSuccessMessage("Booking successfully");
-          console.log(data.data);
           window.setTimeout(function () {
             window.location.href = "/booking-history";
           }, 2000);
         } else {
-          console.log(data.message);
           showErrorMessage("An error occured! Booking failed");
         }
       });
@@ -145,7 +120,7 @@ const HotelDetails = (props) => {
       (element) => element.user._id === localStorage.getItem("userID")
     );
     if (userRating !== undefined) {
-      fetch(`http://localhost:5000/api/rating/${hotelDetailData._id}`, {
+      fetch(`/api/rating/${hotelDetailData._id}`, {
         method: "PUT",
         crossDomain: true,
         headers: {
@@ -172,7 +147,7 @@ const HotelDetails = (props) => {
           }
         });
     } else {
-      fetch(`http://localhost:5000/api/rating/${hotelDetailData._id}`, {
+      fetch(`/api/rating/${hotelDetailData._id}`, {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -239,7 +214,7 @@ const HotelDetails = (props) => {
         <div className="overview-box">
           <div>
             <div className="overview-box__group">
-              <h2 className="heading-secondary ma-bt-lg">Genral Info:</h2>
+              <h2 className="heading-secondary ma-bt-lg">General Info:</h2>
               <div className="overview-box__detail">
                 <svg className="overview-box__icon">
                   {/* <use xlink:href="img/icons.svg#icon-calendar"></use> */}

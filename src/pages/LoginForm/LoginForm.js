@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { showSuccessMessage, showErrorMessage } from "../../utils/notificationHelper"
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const setEnteredEmail = (e) => {
@@ -15,7 +14,7 @@ const LoginForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, password);
-    fetch("http://localhost:5000/api/auth/login", {
+    fetch("/api/auth/login", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -34,31 +33,13 @@ const LoginForm = (props) => {
           localStorage.setItem("token", data.data.token);
           localStorage.setItem("username", data.data.username);
           localStorage.setItem("userID", data.data.userID);
-          toast.success("Login successfully", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showSuccessMessage("Login successfully");
           window.setTimeout(function () {
             window.location.href = "./hotels";
           }, 1500);
           // window.location.href = "./hotels";
         } else {
-          toast.error("Error! Login failed", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("Error! Login failed");
         }
       });
   };

@@ -1,20 +1,18 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { showSuccessMessage, showErrorMessage } from "../../utils/notificationHelper";
 
 const UserProfile = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
   const [oldPassword, setOldPassWord] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [avatar, setAvatar] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/api/me`, {
+    fetch(`/api/me`, {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -33,16 +31,7 @@ const UserProfile = () => {
           setUsername(data.data.user.username);
           setAvatar(data.data.user.avatar);
         } else {
-          toast.error("An error occured! Can not get user data!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("An error occured! Can not get user data!");
         }
       });
   }, []);
@@ -74,7 +63,7 @@ const UserProfile = () => {
   const updateHandler = (e) => {
     e.preventDefault();
     console.log(email, username, phone);
-    fetch(`http://localhost:5000/api/me/profile`, {
+    fetch(`/api/me/profile`, {
       method: "PUT",
       crossDomain: true,
       headers: {
@@ -92,27 +81,9 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          toast.success("Update profile successfully!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showSuccessMessage("Update profile successfully!");
         } else {
-          toast.error("An error occured! Update avatar failed!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("An error occured! Update avatar failed!");
         }
       });
   };
@@ -124,7 +95,7 @@ const UserProfile = () => {
 
     formData.append("avatar", avatar, avatar.name);
     console.log(formData);
-    fetch(`http://localhost:5000/api/me/avatar`, {
+    fetch(`/api/me/avatar`, {
       method: "PUT",
       crossDomain: true,
       headers: {
@@ -136,37 +107,19 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          toast.success("Update avatar successfully!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+         showSuccessMessage("Update avatar successfully!");
           window.setTimeout(function () {
             window.location.reload();
           }, 3000);
         } else {
-          toast.error("Can not update avatar", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("Can not update avatar");
         }
       });
   };
 
   const savePasswordHandler = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/api/me/password`, {
+    fetch(`/api/me/password`, {
       method: "PUT",
       crossDomain: true,
       headers: {
@@ -183,30 +136,12 @@ const UserProfile = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          toast.success("Update avatar successfully!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+         showSuccessMessage("Update avatar successfully!");
           // window.setTimeout(function () {
           //   window.location.href = "./hotels";
           // }, 3000);
         } else {
-          toast.error("Change password failed!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          showErrorMessage("Change password failed!");
         }
       });
   };
